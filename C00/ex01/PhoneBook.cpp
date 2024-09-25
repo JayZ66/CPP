@@ -103,12 +103,12 @@ void	PhoneBook::searchContact()
 		i++;
 	}
 
-	int	input_index;
+	int	input_index; // NEED TO BE A STRING ?
 
 	std::cout << "Entrez l'index du contact souhaité: ";
-	while (1)
+	while (true)
 	{
-		std::cin >> input_index;  // Need to use cin because it's an int !
+		std::cin >> input_index;  // We can use it bce it's an int < to 10 ! (char by char !)
 		if (std::cin.fail())
 		{
 			std::cin.clear(); // Réinitialiser flux d'entrée.
@@ -126,6 +126,7 @@ void	PhoneBook::searchContact()
 			std::cout << "Surnom: " << contacts[input_index].getNickname() << std::endl;
 			std::cout << "Numéro de téléphone: " << contacts[input_index].getPhonenumber() << std::endl;
 			std::cout << "Secret: " << contacts[input_index].getDarkestsecret() << std::endl;
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			break ;
 		}
 	}

@@ -7,9 +7,11 @@ int main()
     PhoneBook   phoneBook;
     std::string input_cmd;
 
-    while (1)
+    while (true)
     {
-        std::cout << "Que souhaitez vous faire dans le répertoire ? ";
+        // std::cin.clear();
+        std::cout << "Que souhaitez vous faire dans le répertoire ? " << std::endl;
+        // std::cin >> input_cmd;
         std::getline(std::cin, input_cmd);
         if (input_cmd == "ADD")
             phoneBook.addContact();

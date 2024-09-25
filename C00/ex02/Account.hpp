@@ -7,10 +7,12 @@
 //                                                                            //
 // ************************************************************************** //
 
-
 #pragma once
 #ifndef __ACCOUNT_H__
 #define __ACCOUNT_H__
+
+#include <iostream>
+#include <ctime>
 
 // ************************************************************************** //
 //                               Account Class                                //
@@ -56,7 +58,8 @@ private:
 
 };
 
-
+// static before function means that it's shared between all instances
+// So need to remove it when creating the function.
 
 // ************************************************************************** //
 // vim: set ts=4 sw=4 tw=80 noexpandtab:                                      //
