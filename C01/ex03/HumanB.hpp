@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 17:21:09 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/09/26 11:58:16 by jeguerin         ###   ########.fr       */
+/*   Created: 2024/09/26 16:02:03 by jeguerin          #+#    #+#             */
+/*   Updated: 2024/09/26 18:46:44 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#pragma once
 
-void	randomChump( std::string name )
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include "Weapon.hpp"
+
+class HumanB
 {
-	Zombie	zombieStack(name);
-	zombieStack.announce();
-}
+private:
+    std::string _name;
+    Weapon  *_weapon;
+public:
+    HumanB(std::string p_name); // Check if necessary to create a private attribut when in constructor.
+    ~HumanB();
+    void    attack();
+    void    setWeapon( Weapon &p_weapon );
+};
+

@@ -31,61 +31,30 @@ void	PhoneBook::addContact()
 		// char	buff[512];
 
 		std::cout << "Entrez le prénom du contact: ";
-		// std::cin >> buff;
 		std::getline(std::cin, firstname_input);
 		firstname_input = getline_error(firstname_input);
 		contacts[index].setFirstname(firstname_input);
 
 		std::cout << "Entrez le nom du contact: ";
-		// std::cin >> buff;
 		std::getline(std::cin, lastname_input);
 		lastname_input = getline_error(lastname_input);
 		contacts[index].setLastname(lastname_input);
 
 		std::cout << "Entrez le surnom du contact: ";
-		// std::cin >> buff;
 		std::getline(std::cin, nickname_input);
 		nickname_input= getline_error(nickname_input);
 		contacts[index].setNickname(nickname_input);
 
 		std::cout << "Entrez le numéro de téléphone du contact: ";
-		// std::cin >> buff;
 		std::getline(std::cin, phone_input);
 		phone_input = getline_error(phone_input);
 		contacts[index].setPhonenumber(phone_input);
 
 		std::cout << "Entrez le secret le plus dark du contact: ";
-		// std::cin >> buff;
 		std::getline(std::cin, darkestsecret_input);
 		darkestsecret_input = getline_error(darkestsecret_input);
 		contacts[index].setDarkestsecret(darkestsecret_input);
 		count++;
-	// }
-	// else
-	// {
-	// 	char	buff[512];
-
-	// 	std::cout << "Entrez le prénom du contact: ";
-	// 	std::cin >> buff;
-	// 	contacts[count % 8].setFirstname(buff);
-
-	// 	std::cout << "Entrez le nom du contact: ";
-	// 	std::cin >> buff;
-	// 	contacts[count % 8].setLastname(buff);
-
-	// 	std::cout << "Entrez le surnom du contact: ";
-	// 	std::cin >> buff;
-	// 	contacts[count % 8].setNickname(buff);
-
-	// 	std::cout << "Entrez le numéro de téléphone du contact: ";
-	// 	std::cin >> buff;
-	// 	contacts[count % 8].setPhonenumber(buff);
-
-	// 	std::cout << "Entrez le secret le plus dark du contact: ";
-	// 	std::cin >> buff;
-	// 	contacts[count % 8].setDarkestsecret(buff);
-	// 	count++;
-	// }
 }
 
 void	PhoneBook::searchContact()
@@ -103,7 +72,7 @@ void	PhoneBook::searchContact()
 		i++;
 	}
 
-	int	input_index; // NEED TO BE A STRING ?
+	int	input_index;
 
 	std::cout << "Entrez l'index du contact souhaité: ";
 	while (true)
