@@ -1,7 +1,7 @@
 
 
 # Nom de l'executable
-NAME = replace
+NAME = harlFilter
 
 # Compilateur
 CXX := c++ # or g++
@@ -10,7 +10,7 @@ CXX := c++ # or g++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 #Liste des fichiers source.
-SRCS = main.cpp \
+SRCS = main.cpp  Fixed.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 

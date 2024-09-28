@@ -1,7 +1,7 @@
 
 
 # Nom de l'executable
-NAME = brainz
+NAME = horde
 
 # Compilateur
 CXX := c++ # or g++

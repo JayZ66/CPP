@@ -1,7 +1,7 @@
 
 
 # Nom de l'executable
-NAME = brainz
+NAME = Harl
 
 # Compilateur
 CXX := c++ # or g++
@@ -10,7 +10,7 @@ CXX := c++ # or g++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 #Liste des fichiers source.
-SRCS = 
+SRCS = main.cpp Harl.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 

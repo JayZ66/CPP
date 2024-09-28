@@ -1,13 +1,18 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 16:11:04 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/09/26 16:11:23 by jeguerin         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-// Copy last exo, add switch and remove break !
+
+// CHECK VIDEOS + GPT COURSE !!
+
+#include "Harl.hpp"
+
+int main(int argc, char **argv)
+{
+    Harl    mood;
+
+    if (argc != 2) {
+        std::cout << "One complain at a time please !" << std::endl;
+        return 1;
+    }
+    std::string complainLevel = argv[1];
+    mood.complain(complainLevel);
+    return 0;
+}

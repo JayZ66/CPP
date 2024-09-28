@@ -1,7 +1,7 @@
 
 
 # Nom de l'executable
-NAME = brainz
+NAME = violence
 
 # Compilateur
 CXX := c++ # or g++
