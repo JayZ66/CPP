@@ -22,7 +22,7 @@ void	Weapon::setType(std::string p_type)
 
 const std::string& Weapon::getType()
 {
-    return (_type);
+    return (_type); // ne pas mettre this ?
 }
 
 /*
