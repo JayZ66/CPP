@@ -12,7 +12,7 @@
 
 #include "Fixed.hpp"
 
-const int _fractionalBit = 8; // Mettre Fixed:: devant ??
+const int Fixed::_fractionalBit = 8; // Mettre Fixed:: devant ??
 
 // Can use roundf function from cmath lib.
 /*
@@ -28,7 +28,7 @@ Fixed::Fixed( void ) : _fixComaNb(0) {
 
 Fixed::Fixed( const int integer ) {
     std::cout << "Int constructor called" << std::endl;
-   this->_fixComaNb = integer << _fractionalBit;
+   this->_fixComaNb = integer << _fractionalBit; // Décalage à gauche pour créer la partie fractionnaire (partie décimale).
 }
 
 /*
@@ -48,7 +48,7 @@ variable privée _fixComaNb stocke la valeur décalée.
 
 Fixed::Fixed( const float float_nb ) {
     std::cout << "Float constructor called" << std::endl;
-    this->_fixComaNb = (int)roundf(float_nb * (256)); //1 << _fractionalBit
+    this->_fixComaNb = (int)roundf(float_nb * 256); //1 << _fractionalBit
 }
 
 /*
@@ -75,7 +75,7 @@ Fixed &Fixed::operator=(const Fixed& other) {
 }
 
 int     Fixed::getRawBits( void ) const {
-    std::cout << "getRawBits member function called" << std::endl;
+    // std::cout << "getRawBits member function called" << std::endl;
     return _fixComaNb;
 }
 
@@ -89,8 +89,9 @@ Fixed::~Fixed() {
 }
 
 float   Fixed::toFloat( void ) const {
-    return (float)_fixComaNb / 256;
+    return static_cast<float>(_fixComaNb) / 256;
 }
+// Use static_cast as it's more secured !
 
 /*
 Comprendre la Conversion
@@ -124,7 +125,7 @@ Pourquoi faire un Cast ?
 */
 
 int Fixed::toInt( void ) const {
-    return (int)_fixComaNb;
+    return _fixComaNb >> _fractionalBit; // Décalage à droite pour récupérer la partie entière.
 }
 
 /*

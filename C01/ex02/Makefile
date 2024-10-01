@@ -1,7 +1,7 @@
 
 
 # Nom de l'executable
-NAME = ref
+NAME = reference
 
 # Compilateur
 CXX := c++ # or g++

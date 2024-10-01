@@ -15,7 +15,8 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include "Weapon.hpp"
+
+class   Weapon;
 
 class HumanB
 {
