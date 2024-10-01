@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/01 11:46:40 by jeguerin          #+#    #+#             */
+/*   Updated: 2024/10/01 12:47:48 by jeguerin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #pragma once
 
@@ -6,7 +17,7 @@
 class   Fixed {
     private:
         int _fixComaNb;
-        static const int _fractionalBit;
+        static const int _fractionalBit; // One attribut for all instances.
 
     public:
         Fixed( void );

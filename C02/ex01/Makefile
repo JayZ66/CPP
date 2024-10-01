@@ -10,7 +10,7 @@ CXX := c++ # or g++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 #Liste des fichiers source.
-SRCS = main.cpp Harl.cpp \
+SRCS = main.cpp Fixed.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 

@@ -32,7 +32,7 @@ Fixed::Fixed(const Fixed &other) // Copy constructor
 Fixed   &Fixed::operator=(const Fixed &other) // Assignment operator
 {
     std::cout << "Copy assignment operator called" << std::endl;
-    if (this != &other) // Why &other dans la condition ??
+    if (this != &other) // Comparing if we are assigning the same add.
         this->_fixComaNb = other.getRawBits();
     return *this;
 }

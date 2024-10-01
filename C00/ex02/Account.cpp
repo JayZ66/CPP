@@ -6,7 +6,7 @@
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:19:22 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/09/25 16:28:36 by jeguerin         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:19:30 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,15 +105,13 @@ bool	Account::makeWithdrawal( int withdrawal )
 		std::cout << "index:" << _accountIndex << ";p_amount:" << _amount << ";withdrawal:refused" << std::endl;
 		return (false);
 	}
-}// [19920104_091532] index:5;p_amount:23;withdrawal:refused
-//[19920104_091532] index:1;p_amount:819;withdrawal:34;amount:785;nb_withdrawals:1
+}
 
 int		Account::checkAmount( void ) const
 {
 	return (_amount);
 }
 
-// [19920104_091532] index:0;amount:42;deposits:0;withdrawals:0
 void	Account::displayStatus( void ) const // Display personnal account info
 {
 	_displayTimestamp();
@@ -127,6 +125,6 @@ void	Account::_displayTimestamp( void )
 	std::time_t now = std::time(0); // To obtain actual time since 1970 in scs.
 	char		time[16];
 	std::tm     *timeinfo = std::localtime(&now); // To convert(yyyy, mm, d) we use localtime() that transforms time_t in a "tm" struct. containing separate infos(hour, day).
-	strftime(time, 16, "%Y%m%d_%H%M%S", timeinfo);
+	strftime(time, 16, "%Y%m%d_%H%M%S", timeinfo); // To convert struct tm in a string.
 	std::cout << "[" << time << "] ";
 }

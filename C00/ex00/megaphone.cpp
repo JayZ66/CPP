@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/01 09:55:02 by jeguerin          #+#    #+#             */
+/*   Updated: 2024/10/01 09:55:04 by jeguerin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <iostream>
 #include <cctype>
@@ -60,14 +70,3 @@ int main(int argc, char **argv)
 	}
 	return (0);
 }
-
-/*
-INTERESTING : 
-for (int i = 1; i < argc; i++)
-		{
-			std::string arg = argv[i];
-			for (unsigned int j = 0; j < arg.length(); j++)
-			{
-				std::cout << static_cast<char>(std::toupper(arg[j]));
-			}
-*/

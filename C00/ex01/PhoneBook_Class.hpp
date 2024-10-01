@@ -2,6 +2,7 @@
 # define PHONEBOOK_CLASS_HPP
 
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <limits>
 
@@ -10,10 +11,10 @@ std::string truncate(const std::string str);
 class   PhoneBook {
 private:
     Contact contacts[8];
-    int     count;
+    int     _count;
 
 public:
-    PhoneBook() : count(0) {}
+    PhoneBook() : _count(0) {}
     // ~PhoneBook(void);
     void    addContact();
     void    searchContact();
