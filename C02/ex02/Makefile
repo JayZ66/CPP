@@ -1,7 +1,7 @@
 
 
 # Nom de l'executable
-NAME = harlFilter
+NAME = fixed
 
 # Compilateur
 CXX := c++ # or g++
@@ -10,7 +10,7 @@ CXX := c++ # or g++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 #Liste des fichiers source.
-SRCS = main.cpp Harl.cpp \
+SRCS = main.cpp Fixed.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -20,7 +20,6 @@ all: author $(NAME)
 # Regles pour afficher l'auteur et le projet.
 author:
 	@echo "Authors : jeguerin\n"
-	@echo "Project : My awesome phoneBook \n"
 
 # Regle pour creer l'executable en liant les objets.
 $(NAME): $(OBJS)

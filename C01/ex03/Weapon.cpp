@@ -6,7 +6,7 @@
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:56:38 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/09/26 18:30:28 by jeguerin         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:48:14 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	Weapon::setType(std::string p_type)
 
 const std::string& Weapon::getType()
 {
-    return (_type); // ne pas mettre this ?
+    return (_type);
 }
 
 /*

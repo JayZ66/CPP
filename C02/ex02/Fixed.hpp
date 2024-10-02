@@ -1,6 +1,9 @@
 
 #pragma once
 
+#include <iostream>
+#include <cmath>
+
 class   Fixed {
     private:
         int _fixComaNb;
@@ -16,8 +19,8 @@ class   Fixed {
         Fixed( const Fixed& other );
         Fixed &operator=( const Fixed& other );
 
-        void    getRawBits( void ) const;
-        int     setRawBits( int const raw );
+        int    getRawBits( void ) const;
+        void     setRawBits( int const raw );
 
         float toFloat( void ) const;
 	    int toInt( void ) const;
@@ -34,14 +37,14 @@ class   Fixed {
         Fixed   operator*( const Fixed& other );
         Fixed   operator/( const Fixed& other );
 
-        Fixed   &operator++(); // Pré-incrémentation
-        Fixed   operator++(int); // Post-incrémentation
+        Fixed   &operator++(); // Pré-incrémentation (++i > + efficace en memoire)
+        Fixed   operator++(int); // Post-incrémentation (i++)
         Fixed   &operator--(); // Pré-décrémentation
         Fixed   operator--(int); // Post-décrémentation
 
         static  Fixed &min(Fixed &a, Fixed &b);
         static const Fixed &min(const Fixed &a, const Fixed &b);
-        static  Fixed&max(Fixed &a, Fixed &b);
+        static  Fixed& max(Fixed &a, Fixed &b);
         static const Fixed  &max(const Fixed &a, const Fixed &b);
 };
 

@@ -6,7 +6,7 @@
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:51:05 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/10/01 16:21:21 by jeguerin         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:08:51 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ public:
 	int toInt( void ) const;
 };
 
-std::ostream& operator<<(std::ostream& nb, const Fixed& other);
+std::ostream& operator<<(std::ostream& out, const Fixed& other);
 
 // Add this function : 
 /*

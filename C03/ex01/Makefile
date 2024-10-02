@@ -6,12 +6,12 @@
 #    By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 11:49:04 by jeguerin          #+#    #+#              #
-#    Updated: 2024/10/02 15:12:43 by jeguerin         ###   ########.fr        #
+#    Updated: 2024/10/02 18:32:03 by jeguerin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Nom de l'executable
-NAME = fixed
+NAME = scavTrap
 
 # Compilateur
 CXX := c++ # or g++

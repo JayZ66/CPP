@@ -20,7 +20,6 @@ all: author $(NAME)
 # Regles pour afficher l'auteur et le projet.
 author:
 	@echo "Authors : jeguerin\n"
-	@echo "Project : My awesome phoneBook \n"
 
 # Regle pour creer l'executable en liant les objets.
 $(NAME): $(OBJS)

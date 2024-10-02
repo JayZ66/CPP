@@ -1,0 +1,239 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    explanations.txt                                   :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/10/02 11:27:18 by jeguerin          #+#    #+#              #
+#    Updated: 2024/10/02 12:09:58 by jeguerin         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+1. Pourquoi le & pour l'opérateur d'affectation (operator=) ?
+
+L'opérateur d'affectation (operator=) doit modifier l'instance courante (l'objet sur lequel 
+on appelle l'opérateur). Son but est de copier les données d'un objet dans l'objet courant.
+
+Exemple :
+
+a = b;  // Copie les données de b dans a
+Dans ce cas, le retour par référence (Fixed&) est nécessaire car on veut que l’opérateur 
+retourne une référence à l’objet courant (*this). Cela permet d'enchaîner plusieurs 
+affectations comme ceci :
+
+a = b = c;  // Ce qui est en fait a = (b = c)
+Sans le retour par référence, l'affectation ne pourrait pas fonctionner de cette manière.
+
+2. *Pourquoi pas de & pour les autres opérateurs (+, -, , /) ?
+
+Les opérateurs arithmétiques (+, -, *, /) retournent une nouvelle instance résultant de 
+l’opération, plutôt que de modifier directement l’objet courant. Cela signifie qu’ils créent 
+un nouvel objet, et non pas une référence à l’objet courant.
+
+Exemple :
+
+Fixed c = a + b;  // Crée un nouvel objet 'c' qui est le résultat de 'a + b'
+Dans ce cas, il n’y a pas besoin de retourner une référence (Fixed&), car le résultat de 
+l'opération est une copie et non l'objet lui-même.
+
+3. Quand utiliser & ?
+
+Retour par référence (&) : Utilisé pour retourner l'instance courante, c'est-à-dire l’objet sur 
+lequel l'opération est effectuée, sans en créer une copie. Typiquement utilisé pour les 
+opérateurs qui modifient l’objet, comme l’opérateur d’affectation (=) ou les opérateurs 
+d'incrémentation/décrémentation lorsqu'ils sont en mode préfixé.
+
+Retour par valeur (sans &) : Utilisé lorsque l’opérateur crée un nouvel objet qui représente 
+le résultat de l'opération, comme avec les opérateurs arithmétiques (+, -, *, /), où l'on 
+retourne une nouvelle copie.
+
+4. Exemples concrets :
+
+Opérateur d’affectation (retourne une référence) :
+
+Fixed& operator=(const Fixed& other);
+
+Ici, & est utilisé car l’opérateur modifie l’objet courant et retourne une référence à celui-ci.
+Opérateurs arithmétiques (retournent une nouvelle copie) :
+
+Fixed operator+(const Fixed& other) const;
+Fixed operator-(const Fixed& other) const;
+Fixed operator*(const Fixed& other) const;
+Fixed operator/(const Fixed& other) const;
+
+Ici, on ne retourne pas une référence, car le résultat de l’opération est une nouvelle copie, 
+et l’objet courant reste inchangé.
+
+5. Cas particulier : Incrémentation/décrémentation
+
+Les opérateurs d’incrémentation et de décrémentation peuvent retourner soit une référence, 
+soit une copie, selon qu’il s’agit de la pré-incrémentation/décrémentation (++a, --a) ou de 
+la post-incrémentation/décrémentation (a++, a--).
+
+Pré-incrémentation (retourne une référence) :
+
+Fixed& operator++();   // Retourne une référence car l’objet est modifié et retourné.
+Le préfixe modifie l’objet courant et le retourne par référence.
+
+Post-incrémentation (retourne une copie) :
+
+Fixed operator++(int);  // Retourne une copie car il faut retourner l’état d'avant 
+l'incrémentation.
+Le postfixe retourne une copie de l’état de l’objet avant la modification.
+
+
+
+-------------------- DECLARATION OPERATORS EXPLANATIONS ---------------------
+
+1. Opérateurs d'Incrémentation et de Décrémentation
+    a. Fixed &operator++(); // Pré-incrémentation
+        - Type de retour : Fixed&
+            Cela signifie que la méthode renvoie une référence à l'objet Fixed courant après 
+            l'incrémentation. En retournant une référence, on peut continuer à chaîner d'autres 
+            opérations.
+
+        - Nom : operator++
+            C'est la syntaxe pour surcharger l'opérateur d'incrémentation (++).
+
+        - Parenthèses vides :
+            Cela signifie qu'il s'agit d'une version pré-incrémentation. Avant de retourner 
+            l'objet, la méthode incrémente la valeur de l'objet courant.
+
+    b. Fixed operator++(int); // Post-incrémentation
+        - Type de retour : Fixed
+            Cela signifie que cette méthode renvoie une nouvelle instance de Fixed après 
+            l'incrémentation.
+
+        - Nom : operator++
+            Comme pour la pré-incrémentation, on utilise operator++.
+
+        - Paramètre : int
+            Le paramètre int ici est une astuce pour différencier entre la pré-incrémentation 
+            et la post-incrémentation. On n'utilise pas vraiment ce paramètre, mais sa présence 
+            indique qu'il s'agit d'une version post-incrémentation. Cela signifie que la 
+            méthode renverra la valeur avant incrémentation.
+
+    c. Fixed &operator--(); // Pré-décrémentation
+        - Type de retour : Fixed&
+            Comme pour la pré-incrémentation, cela indique qu'on renvoie une référence à 
+            l'objet courant après l'opération de décrémentation.
+
+        - Nom : operator--
+            Pour surcharger l'opérateur de décrémentation (--).
+
+        - Parenthèses vides :
+            Cela signifie qu'il s'agit d'une version pré-décrémentation.
+
+    d. Fixed operator--(int); // Post-décrémentation
+        - Type de retour : Fixed
+            Cela indique qu'on renvoie une nouvelle instance de Fixed après la décrémentation.
+
+        - Nom : operator--
+            Pour surcharger l'opérateur de décrémentation.
+
+        - Paramètre : int
+            Comme pour la post-incrémentation, ce paramètre est utilisé pour différencier entre 
+            pré et post. Cela indique qu'il s'agit d'une version post-décrémentation.
+
+
+2. Fonctions Statique pour min et max
+    a. static Fixed &min(Fixed &a, Fixed &b);
+        - Mot-clé static :
+            Cela indique que la fonction est une méthode statique, ce qui signifie qu'elle peut 
+            être appelée sans avoir besoin d'une instance de la classe.
+
+        - Type de retour : Fixed&
+            Cela signifie que la méthode renvoie une référence à l'objet Fixed le plus petit 
+            parmi a et b.
+
+        - Paramètres : Fixed &a, Fixed &b
+            Ce sont des références aux objets Fixed qui seront comparés. L'utilisation de 
+            références évite de copier les objets, ce qui est plus efficace.
+
+    b. static const Fixed &min(const Fixed &a, const Fixed &b);
+        - Mot-clé static :
+            Comme précédemment, cela indique une méthode statique.
+
+        - Type de retour : const Fixed&
+            Ici, la méthode renvoie une référence constante à l'objet Fixed le plus petit, ce 
+            qui signifie qu'on ne peut pas modifier l'objet retourné.
+
+        - Paramètres : const Fixed &a, const Fixed &b
+            Les références aux objets Fixed à comparer, marquées comme const pour indiquer 
+            qu'elles ne seront pas modifiées.
+
+    c. static Fixed &max(Fixed &a, Fixed &b);
+        - Mot-clé static :
+            Indique que la méthode est statique.
+
+        - Type de retour : Fixed&
+            Cela signifie que la méthode renvoie une référence à l'objet Fixed le plus grand 
+            parmi a et b.
+
+        - Paramètres : Fixed &a, Fixed &b
+            Ce sont des références aux objets Fixed à comparer.
+
+    d. static const Fixed &max(const Fixed &a, const Fixed &b);
+        - Mot-clé static :
+            Indique une méthode statique.
+
+        - Type de retour : const Fixed&
+            Renvoie une référence constante à l'objet Fixed le plus grand, ce qui indique que 
+            l'objet retourné ne peut pas être modifié.
+
+        - Paramètres : const Fixed &a, const Fixed &b
+            Références aux objets Fixed à comparer, marquées comme const.
+
+
+---------------------- Pré-Incrémentation vs Post-Incrémentation ------------------------
+
+1. Pré-Incrémentation (++x)
+    - Fonctionnement : Dans le cas de la pré-incrémentation, l'opération est effectuée avant que la valeur ne soit 
+    utilisée dans une expression. Cela signifie que lorsque tu appelles la méthode de pré-incrémentation, la valeur 
+    de l'objet est d'abord augmentée, puis cette nouvelle valeur est renvoyée.
+    
+    - Utilisation : Cela est utile lorsque tu souhaites directement travailler avec la valeur incrémentée dans le même 
+    contexte.
+    
+2. Post-Incrémentation (x++)
+    - Fonctionnement : Pour la post-incrémentation, la valeur de l'objet est d'abord utilisée dans l'expression, puis 
+    incrémentée. Ainsi, si tu as une expression où la valeur est utilisée, la valeur avant l'incrémentation est utilisée 
+    dans cette expression.
+    
+    - Utilisation : Cela est pratique lorsque tu veux d'abord utiliser la valeur actuelle avant de l'augmenter. 
+    Par exemple, si tu veux d'abord afficher la valeur, puis l'incrémenter pour une utilisation ultérieure.
+
+Illustration :
+    - Pré-incrémentation :
+        Si x vaut 5 et que tu fais ++x, alors x devient 6, et la valeur retournée est 6.
+
+    - Post-incrémentation :
+        Si x vaut 5 et que tu fais x++, alors la valeur retournée est 5, mais x devient 6 après l'opération.
+
+
+---------------------------- Fonctions min et max ---------------------------------
+1. min (minimum)
+    - Fonctionnalité : La fonction min a pour but de déterminer le plus petit des deux objets Fixed qui lui sont passés 
+    en paramètres. Elle renvoie une référence à l'objet le plus petit.
+
+    - Double définition :
+        > La première version accepte des références modifiables (Fixed &), ce qui signifie que tu peux passer des 
+        objets que tu souhaites comparer et potentiellement modifier.
+        > La seconde version accepte des références constantes (const Fixed &), ce qui est utile pour les cas où tu 
+        veux comparer des objets sans les modifier. Cela permet de protéger l'intégrité des objets passés tout en permettant 
+        la comparaison.
+        
+2. max (maximum)
+    - Fonctionnalité : De manière similaire à min, la fonction max détermine le plus grand des deux objets Fixed passés en 
+    paramètres et renvoie une référence à cet objet.
+
+    - Double définition : Comme pour min, la première version accepte des références modifiables, et la seconde version 
+    accepte des références constantes. Cela donne une flexibilité pour comparer des objets tout en assurant qu'aucun 
+    changement non souhaité n'est effectué sur les objets comparés.
+
+En résumé
+ - Pré-incrémentation et post-incrémentation permettent de contrôler le moment où l'incrémentation a lieu par rapport 
+ à l'utilisation de la valeur.
+- min et max permettent de comparer des objets pour trouver le plus petit ou le plus grand tout en offrant la possibilité 
+de protéger les objets contre les modifications indésirables grâce à l'utilisation de const.

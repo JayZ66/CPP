@@ -1,31 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 17:20:18 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/10/02 17:43:58 by jeguerin         ###   ########.fr       */
+/*   Created: 2024/10/02 18:30:10 by jeguerin          #+#    #+#             */
+/*   Updated: 2024/10/02 18:30:22 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "ClapTrap.hpp"
 
-int	main(int argc, char **argv)
-{
-	if (argc == 1)
-		std::cout << "There is no zombie here !" << std::endl;
-	else if (argc > 2)
-		std::cout << "Enter the name of one Zombie !" << std::endl;
-	else
-	{
-		std::string zombie = argv[1];
-		Zombie*	ptr;
-		ptr = newZombie(zombie);
-		ptr->announce();
-		delete	ptr;
-		randomChump(zombie);
-	}
-	return 0;
-}

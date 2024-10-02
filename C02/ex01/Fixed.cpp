@@ -6,7 +6,7 @@
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:52:09 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/10/01 17:55:59 by jeguerin         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:36:04 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ variable privée _fixComaNb stocke la valeur décalée.
 Fixed::Fixed( const float float_nb ) {
     std::cout << "Float constructor called" << std::endl;
     this->_fixComaNb = (int)roundf(float_nb * 256); //1 << _fractionalBit
+    std::cout << this->_fixComaNb / 256 << std::endl;
 }
 
 /*
@@ -89,9 +90,8 @@ Fixed::~Fixed() {
 }
 
 float   Fixed::toFloat( void ) const {
-    return static_cast<float>(_fixComaNb) / 256;
+    return static_cast<float>(_fixComaNb) / 256; // NPO : Cast attribute and THEN divide !!
 }
-// Use static_cast as it's more secured !
 
 /*
 Comprendre la Conversion
@@ -113,7 +113,7 @@ Pourquoi faire un Cast ?
     - En C++, lorsque tu effectues une division entre deux entiers, le résultat est aussi un 
     entier. Par exemple, si _fixComaNb est 5, alors 5 / 256 donnerait 0 (car en division entière,
     les décimales sont tronquées).
-    - En faisant le cast de _fixComaNb en float, tu te assures que la division se fait entre un 
+    - En faisant le cast de _fixComaNb en float, tu t'assures que la division se fait entre un 
     float et un int. Cela signifie que le calcul est effectué dans le domaine flottant, 
     permettant de conserver les valeurs décimales.
 
@@ -142,9 +142,9 @@ EXPLICATIONS :
     Le cast vers int va tronquer la partie décimale (ce qui est approprié dans ce cas).
 */
 
-std::ostream& operator<<(std::ostream& nb, const Fixed& other) {
-   nb << other.toFloat(); // Insère la valeur flottante dans le flux (nb)
-   return nb; // Retourne le flux pour permettre le chaînage
+std::ostream& operator<<(std::ostream& out, const Fixed& other) {
+   out << other.toFloat(); // Insère la valeur flottante dans le flux (nb)
+   return out; // Retourne le flux pour permettre le chaînage
 }
 /*
 insère une représentation en virgule flottante du nombre à virgule fixe dans le 
