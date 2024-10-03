@@ -6,7 +6,7 @@
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 11:23:39 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/10/02 17:28:56 by jeguerin         ###   ########.fr       */
+/*   Updated: 2024/10/03 10:33:20 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,10 @@ bool    Fixed::operator!=( const Fixed& other ) const {
 
 // ----------------- Operateurs arithmetiques -----------------
 
+
 // Fixed   Fixed::operator+( const Fixed& other ) {
-// 	int	result = this->_fixComaNb + other.getRawBits();
-// 	Fixed	newObject(result);
-// 	return newObject; // Renvoie une copie de ce nouvel objet
-// }
+// 	return Fixed(this->_fixComaNb + other.getRawBits());
+// } TO TEST !!!!
 
 Fixed   Fixed::operator+( const Fixed& other ) {
 	Fixed	result;

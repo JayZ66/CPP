@@ -6,7 +6,7 @@
 #    By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 11:49:04 by jeguerin          #+#    #+#              #
-#    Updated: 2024/10/02 18:30:34 by jeguerin         ###   ########.fr        #
+#    Updated: 2024/10/03 14:49:34 by jeguerin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CXX := c++ # or g++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 #Liste des fichiers source.
-SRCS = main.cpp  newFixed.cpp \
+SRCS = main.cpp  ClapTrap.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 

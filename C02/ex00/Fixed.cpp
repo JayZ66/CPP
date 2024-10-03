@@ -6,11 +6,13 @@
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:46:34 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/10/01 11:46:35 by jeguerin         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:20:05 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
+const int Fixed::_fractionalBit = 8;
 
 Fixed::Fixed( void ) : _fixComaNb(0) {
 	std::cout << "Default constructor called" << std::endl;

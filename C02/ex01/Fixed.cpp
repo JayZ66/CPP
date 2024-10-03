@@ -6,13 +6,13 @@
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:52:09 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/10/02 17:36:04 by jeguerin         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:19:34 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-const int Fixed::_fractionalBit = 8; // Mettre Fixed:: devant ??
+const int Fixed::_fractionalBit = 8;
 
 // Can use roundf function from cmath lib.
 /*

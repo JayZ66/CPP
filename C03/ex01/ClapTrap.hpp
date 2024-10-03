@@ -6,7 +6,7 @@
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:29:56 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/10/03 16:44:05 by jeguerin         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:51:32 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 class ClapTrap
 {
-private:
+protected:
     std::string _name; // Passed as param. in constructor.
     int _hitPoints; // health of claptrap, need to be init to 10
     int _energyPoints; // init to 10
