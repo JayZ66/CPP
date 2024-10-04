@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 18:29:36 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/10/04 15:57:56 by jeguerin         ###   ########.fr       */
+/*   Created: 2024/10/03 16:53:21 by jeguerin          #+#    #+#             */
+/*   Updated: 2024/10/04 15:16:38 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
+
 #include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
 
-int main()
+class ClapTrap;
+
+class ScavTrap : virtual public ClapTrap
 {
-	ClapTrap	clapTrap("JayZ");
-	ScavTrap	scavTrap("Teddix");
+private:
 
-	clapTrap.attack("Teddix");
-	clapTrap.takeDamage(5);
-	clapTrap.getStatus();
-	scavTrap.getStatus();
-	scavTrap.attack("JayZ");
-	clapTrap.beRepaired(2);
-	scavTrap.guardGate();
-	clapTrap.getStatus();
-	scavTrap.getStatus();
-	
-	return 0;
-}
+public:
+	ScavTrap( void );
+	ScavTrap( const std::string& _pname );
+	~ScavTrap();
+
+	void    attack(const std::string& target);
+
+	void	guardGate();
+	void    getStatus( void );
+};

@@ -20,7 +20,7 @@ CXX := c++ # or g++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 #Liste des fichiers source.
-SRCS = main.cpp  newFixed.cpp \
+SRCS = main.cpp  ClapTrap.cpp FragTrap.cpp ScavTrap.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 

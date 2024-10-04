@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 18:29:36 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/10/04 15:57:56 by jeguerin         ###   ########.fr       */
+/*   Created: 2024/10/04 15:48:31 by jeguerin          #+#    #+#             */
+/*   Updated: 2024/10/04 15:54:12 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
+
+#include <iostream>
 #include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
 
-int main()
+class   FragTrap : public ClapTrap
 {
-	ClapTrap	clapTrap("JayZ");
-	ScavTrap	scavTrap("Teddix");
+private:
+    /* data */
+public:
+    FragTrap( void );
+    FragTrap( const std::string& _pname );
+    ~FragTrap();
 
-	clapTrap.attack("Teddix");
-	clapTrap.takeDamage(5);
-	clapTrap.getStatus();
-	scavTrap.getStatus();
-	scavTrap.attack("JayZ");
-	clapTrap.beRepaired(2);
-	scavTrap.guardGate();
-	clapTrap.getStatus();
-	scavTrap.getStatus();
-	
-	return 0;
-}
+    void    highFivesGuys( void );
+    void    getStatus( void );
+};

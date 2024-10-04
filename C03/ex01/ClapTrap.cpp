@@ -6,7 +6,7 @@
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:30:10 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/10/03 16:51:22 by jeguerin         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:57:52 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void    ClapTrap::beRepaired(unsigned int amount) {
 }
 
 void    ClapTrap::getStatus( void ) {
-    std::cout << "ClapTrap " << _name << "status :" << std::endl <<  "Energy points: " << this->getEnergyPoints() << std::endl << "Hit Points: " << this->getHitPoints() << std::endl << "Damage: " << this->getAttackDammage() <<  std::endl;
+    std::cout << "ClapTrap " << _name << " status :" << std::endl <<  "Energy points: " << this->getEnergyPoints() << std::endl << "Hit Points: " << this->getHitPoints() << std::endl << "Damage: " << this->getAttackDammage() <<  std::endl;
    
 
 }
