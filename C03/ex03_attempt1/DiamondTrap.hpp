@@ -1,8 +1,9 @@
 
 
+
+
 #pragma once
 
-#include "ClapTrap.hpp"
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 
@@ -10,13 +11,12 @@ class   DiamondTrap : public ScavTrap, public FragTrap
 {
     private:
     std::string _name; // Nom propre a Diamond Trap.
+    int         _energy;
 
     public:
 
     DiamondTrap( void );
-    DiamondTrap( const std::string& _pname );
-    DiamondTrap( const DiamondTrap& other);
-    DiamondTrap& operator=( const DiamondTrap& other);
+    DiamondTrap( const std::string& _pname, int _pHitPoints, int _pEnergyPoints, int _pAttackDamage );
     ~DiamondTrap( void );
 
     void    whoAmI();

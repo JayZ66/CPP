@@ -14,7 +14,24 @@
 
 int main()
 {
-	DiamondTrap	diamondTrap("Diamond");
+	// ClapTrap	clapTrap("JayZ");
+	// ScavTrap	scavTrap("Teddix");
+	// FragTrap	fragTrap("Antoine");
+
+	// clapTrap.attack("Teddix");
+	// clapTrap.takeDamage(5);
+	// clapTrap.getStatus();
+	// scavTrap.getStatus();
+	// fragTrap.getStatus();
+	// scavTrap.attack("JayZ");
+	// clapTrap.beRepaired(2);
+	// scavTrap.guardGate();
+	// fragTrap.highFivesGuys();
+	// clapTrap.getStatus();
+	// scavTrap.getStatus();
+	// fragTrap.getStatus();
+
+	DiamondTrap	diamondTrap("Diamond", 2000, 213, 67);
 	diamondTrap.attack("Flo");
 	diamondTrap.whoAmI();
 	

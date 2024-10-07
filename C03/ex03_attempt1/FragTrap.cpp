@@ -12,24 +12,13 @@
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap( void ) : ClapTrap() {}
+FragTrap::FragTrap() : ClapTrap("Antoine", 100, 100, 30) {}
 
-FragTrap::FragTrap( const FragTrap& other) {
-    *this = other;
-}
-
-FragTrap& FragTrap::operator=( const FragTrap& other) {
-    if (this != &other) {
-        ClapTrap::operator=(other);
-    }
-    return *this;
-}
-
-FragTrap::FragTrap( const std::string& _pname ) : ClapTrap(_pname)
+FragTrap::FragTrap( const std::string& _pname, int _pHitPoints, int _pEnergyPoints, int _pAttackDamage) : ClapTrap(_pname, _pHitPoints, _pEnergyPoints, _pAttackDamage)
 {
-    _hitPoints = 100;
-    _energyPoints = 100;
-    _attackDamage = 30;
+    // _hitPoints = 100;
+    // _energyPoints = 100;
+    // _attackDamage = 30;
     std::cout << "Default constructor called, FragTrap name is " << _name << ", it has " << _hitPoints << " hit points, " << _energyPoints << " energy points and " << _attackDamage << " attack damage." << std::endl;
 }
 

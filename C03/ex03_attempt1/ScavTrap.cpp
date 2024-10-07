@@ -12,29 +12,18 @@
 
 #include "ScavTrap.hpp"
 
-int ScavTrap::_energyP = 0;
+// int ScavTrap::savedEnergy = 0;
 
-ScavTrap::ScavTrap( void ) : ClapTrap() {} 
-
-ScavTrap::ScavTrap( const ScavTrap& other) {
-    *this = other;
-}
-
-ScavTrap& ScavTrap::operator=( const ScavTrap& other) {
-    if (this != &other) {
-        ClapTrap::operator=(other);
-    }
-    return *this;
-}
+ScavTrap::ScavTrap() : ClapTrap("Teddix", 100, 50, 20) {}
 
 // Calling ClapTrap constructor to init attributes and then overwrite with ScavTrap data.
 // We call ClapTrap constructor to init the name.
-ScavTrap::ScavTrap( const std::string& _pname) : ClapTrap(_pname)
+ScavTrap::ScavTrap( const std::string& _pname, int _pHitPoints, int _pEnergyPoints, int _pAttackDamage) : ClapTrap(_pname, _pHitPoints, _pEnergyPoints, _pAttackDamage)
 {
-    _hitPoints = 100;
-    _energyPoints = 50;
-    _attackDamage = 20;
-    _energyP = _energyPoints;
+    // _hitPoints = 100;
+    // _energyPoints = 50;
+    // _attackDamage = 20;
+    // savedEnergy = _energyPoints;
     std::cout << "Default constructor called, ScavTrap name is " << _name << ", it has " << _hitPoints << " hit points, " << _energyPoints << " energy points and " << _attackDamage << " attack damage." << std::endl;
 }
 // Then we can init ClapTrap attributes as they are protected and not private.
@@ -65,7 +54,6 @@ void    ScavTrap::getStatus( void ) {
 
 }
 
-int	ScavTrap::getEnergyP( void ) {
-
-    return _energyP;
-}
+// int		ScavTrap::getEnergypoints( void ) {
+//     return savedEnergy;
+// }

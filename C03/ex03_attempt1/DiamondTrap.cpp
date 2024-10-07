@@ -8,10 +8,15 @@
 Pour initialiser correctement le nom dans ClapTrap, il faut utiliser la liste d'initialisation 
 et passer le nom modifié (avec le suffixe) au constructeur de ClapTrap.
 */
-DiamondTrap::DiamondTrap( const std::string& _pname ) : ClapTrap(_pname + "_clap_name"), ScavTrap(_pname), FragTrap(_pname), _name(_pname)
+DiamondTrap::DiamondTrap( const std::string& _pname, int _pHitPoints, int _pEnergyPoints, int _pAttackDamage ) : ScavTrap(_pname, _pHitPoints, _pEnergyPoints, _pAttackDamage), FragTrap(_pname, _pHitPoints, _pEnergyPoints, _pAttackDamage)
 {
+    // this->_hitPoints = FragTrap::_hitPoints;
+    // this->_energyPoints = ScavTrap::getEnergypoints();
+    // this->_attackDamage = FragTrap::_attackDamage;
+    _name = _pname;
+    ClapTrap::_name = std::string(_pname + "_clap_name");
     _hitPoints = FragTrap::_hitPoints;
-    _energyPoints = ScavTrap::getEnergyP();
+    _energyPoints = ScavTrap::_energyPoints;
     _attackDamage = FragTrap::_attackDamage;
     std::cout << "Default constructor called, DiamondTrap name is " << _name << ", it has " << _hitPoints << " hit points, " << _energyPoints << " energy points and " << _attackDamage << " attack damage." << std::endl;
 

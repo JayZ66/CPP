@@ -17,10 +17,10 @@ NAME = diamondTrap
 CXX := c++ # or g++
 
 # Options de compilation
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98
+CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -Wshadow
 
 #Liste des fichiers source.
-SRCS = main.cpp ClapTrap.cpp FragTrap.cpp ScavTrap.cpp new_DiamondTrap.cpp \
+SRCS = main.cpp  ClapTrap.cpp FragTrap.cpp ScavTrap.cpp DiamondTrap.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 

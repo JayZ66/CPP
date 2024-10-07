@@ -21,9 +21,7 @@ private:
     /* data */
 public:
     FragTrap( void );
-    FragTrap( const std::string& _pname );
-    FragTrap( const FragTrap& other);
-    FragTrap& operator=( const FragTrap& other);
+    FragTrap( const std::string& _pname, int _pHitPoints, int _pEnergyPoints, int _pAttackDamage );
     ~FragTrap();
 
     void    highFivesGuys( void );

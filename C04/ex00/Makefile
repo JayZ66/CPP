@@ -6,12 +6,12 @@
 #    By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/01 11:49:04 by jeguerin          #+#    #+#              #
-#    Updated: 2024/10/02 18:32:21 by jeguerin         ###   ########.fr        #
+#    Updated: 2024/10/02 18:32:11 by jeguerin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Nom de l'executable
-NAME = diamondTrap
+NAME = animal
 
 # Compilateur
 CXX := c++ # or g++
@@ -20,7 +20,7 @@ CXX := c++ # or g++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 #Liste des fichiers source.
-SRCS = main.cpp ClapTrap.cpp FragTrap.cpp ScavTrap.cpp new_DiamondTrap.cpp \
+SRCS = main.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 

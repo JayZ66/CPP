@@ -14,19 +14,21 @@
 
 #include "ClapTrap.hpp"
 
-class ClapTrap;
-
 class ScavTrap : virtual public ClapTrap
 {
 private:
+	static int	_energyP;
 
 public:
 	ScavTrap( void );
 	ScavTrap( const std::string& _pname );
+	ScavTrap( const ScavTrap& other);
+    ScavTrap& operator=( const ScavTrap& other);
 	~ScavTrap();
 
 	void    attack(const std::string& target);
 
 	void	guardGate();
 	void    getStatus( void );
+	static int	getEnergyP( void );
 };
