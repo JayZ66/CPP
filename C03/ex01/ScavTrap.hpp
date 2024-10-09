@@ -6,7 +6,7 @@
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:53:21 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/10/04 15:55:17 by jeguerin         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:16:04 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ private:
 public:
 	ScavTrap( void );
 	ScavTrap( const std::string& _pname );
+	ScavTrap( const ScavTrap& other);
+    ScavTrap& operator=( const ScavTrap& other);
 	~ScavTrap();
 
 	void    attack(const std::string& target);

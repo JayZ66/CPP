@@ -6,7 +6,7 @@
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:03:32 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/10/04 15:55:16 by jeguerin         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:47:21 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ ScavTrap::ScavTrap( const std::string& _pname) : ClapTrap(_pname)
 }
 // Then we can init ClapTrap attributes as they are protected and not private.
 // If they were private, we'll need to use public setter ClapTrap functions to access and init it.
+
+// We can do both : calling ClapTrap copy constructor or use assignment operator that calls ClapTrap operator=.
+ScavTrap::ScavTrap( const ScavTrap& other) : ClapTrap(other) {}
+
+ScavTrap& ScavTrap::operator=( const ScavTrap& other) {
+    if (this != &other) {
+        ClapTrap::operator=(other);
+    }
+    return *this;
+}
 
 ScavTrap::~ScavTrap()
 {

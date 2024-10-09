@@ -6,7 +6,7 @@
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:48:47 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/10/04 15:52:39 by jeguerin         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:46:46 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@ FragTrap::FragTrap( const std::string& _pname ) : ClapTrap(_pname)
     _energyPoints = 100;
     _attackDamage = 30;
     std::cout << "Default constructor called, FragTrap name is " << _name << ", it has " << _hitPoints << " hit points, " << _energyPoints << " energy points and " << _attackDamage << " attack damage." << std::endl;
+}
+
+FragTrap::FragTrap( const FragTrap& other) {
+    *this = other; // Call assignment operator instead (ClapTrap) copy constructor !
+}
+
+FragTrap& FragTrap::operator=( const FragTrap& other) {
+    if (this != &other) {
+        ClapTrap::operator=(other);
+    }
+    return *this;
 }
 
 FragTrap::~FragTrap()

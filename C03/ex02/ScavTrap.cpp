@@ -6,14 +6,12 @@
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:03:32 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/10/04 15:17:55 by jeguerin         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:47:14 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-// Calling ClapTrap constructor to init attributes and then overwrite with ScavTrap data.
-// We call ClapTrap constructor to init the name.
 ScavTrap::ScavTrap( const std::string& _pname) : ClapTrap(_pname)
 {
     _hitPoints = 100;
@@ -21,8 +19,15 @@ ScavTrap::ScavTrap( const std::string& _pname) : ClapTrap(_pname)
     _attackDamage = 20;
     std::cout << "Default constructor called, ScavTrap name is " << _name << ", it has " << _hitPoints << " hit points, " << _energyPoints << " energy points and " << _attackDamage << " attack damage." << std::endl;
 }
-// Then we can init ClapTrap attributes as they are protected and not private.
-// If they were private, we'll need to use public setter ClapTrap functions to access and init it.
+
+ScavTrap::ScavTrap( const ScavTrap& other) : ClapTrap(other) {}
+
+ScavTrap& ScavTrap::operator=( const ScavTrap& other) {
+    if (this != &other) {
+        ClapTrap::operator=(other);
+    }
+    return *this;
+}
 
 ScavTrap::~ScavTrap()
 {

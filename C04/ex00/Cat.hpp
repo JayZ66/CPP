@@ -1,11 +1,12 @@
 
 #pragma once
 
+#include "Animal.hpp"
+
 class Animal;
 
 class   Cat : public Animal {
     private:
-
 
     public:
     Cat( void );
@@ -13,6 +14,6 @@ class   Cat : public Animal {
     Cat& operator=( const Cat& other);
     ~Cat( void );
 
-    void    makeSound(); // Cannot use override so need to have the same method as Animal Class.
+    void    makeSound() const; // Cannot use override so need to have the same method as Animal Class.
 
-}
+};

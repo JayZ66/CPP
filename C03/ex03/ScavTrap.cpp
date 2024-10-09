@@ -6,7 +6,7 @@
 /*   By: jeguerin <jeguerin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:03:32 by jeguerin          #+#    #+#             */
-/*   Updated: 2024/10/04 15:17:55 by jeguerin         ###   ########.fr       */
+/*   Updated: 2024/10/08 19:12:41 by jeguerin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ int ScavTrap::_energyP = 0;
 
 ScavTrap::ScavTrap( void ) : ClapTrap() {} 
 
-ScavTrap::ScavTrap( const ScavTrap& other) {
-    *this = other;
-}
+ScavTrap::ScavTrap( const ScavTrap& other) : ClapTrap(other) {}
 
 ScavTrap& ScavTrap::operator=( const ScavTrap& other) {
     if (this != &other) {
