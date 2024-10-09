@@ -17,9 +17,10 @@
 class AMateria
 {
     protected:
-    //TO ADD
+    std::string _type;
 
     public:
+    AMateria();
     AMateria(std::string const& type);
     ~AMateria();
     AMateria( const AMateria& other );
@@ -27,7 +28,7 @@ class AMateria
     
     // TO ADD
 
-    std::string const& getType() const = 0; //Returns the materia type
-    virtual AMateria* clone() const = 0;
-    virtual void use(ICharacter& target) = 0; // Need to be virtual pure ??
+    std::string const& getType() const; //Returns the materia type
+    virtual AMateria* clone() const = 0; // Need to be implemented in other classes (dérivées) to return a new material instance. 
+    virtual void use(ICharacter& target); // Need to be virtual pure ??
 };

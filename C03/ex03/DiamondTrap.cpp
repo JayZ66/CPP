@@ -11,9 +11,7 @@ DiamondTrap::DiamondTrap( const DiamondTrap& other)
 DiamondTrap&    DiamondTrap::operator=( const DiamondTrap& other)
 {
     if (this != &other) {
-        ClapTrap::operator=(other);
-        ScavTrap::operator=(other);
-        FragTrap::operator=(other);
+        ClapTrap::operator=(other); // It's enough to call ClapTrap assignment operator as all classes are inherated from ClapTrap.
         this->_name = other._name;
     }
     return *this;
