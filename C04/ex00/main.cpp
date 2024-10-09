@@ -8,11 +8,11 @@
 int main()
 {
     const Animal* meta = new Animal();
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
+    const Animal* j = new Dog(); // Pointeur vers un objet de type Dog
+    const Animal* i = new Cat(); // Pointeur vers un objet de type Cat
     std::cout << "Type of j pointer is " << j->getType() << " " << std::endl;
     std::cout << "Type of i pointer is " << i->getType() << " " << std::endl;
-    i->makeSound(); //will output the cat sound!
+    i->makeSound(); // Affiche "Meow" car i pointe vers un Cat
     j->makeSound();
     meta->makeSound();
     
