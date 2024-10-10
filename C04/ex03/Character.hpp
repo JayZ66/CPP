@@ -2,16 +2,27 @@
 #pragma once
 
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
 
-class Charater {
-    private:
+class ICharacter;
+
+class Character : public ICharacter {
+private:
     std::string _name;
-    AMateria*   materials[4];
+    AMateria*   _inventory[4];
+    // C'est l'inventaire de Character avec 4 emplacements pour des instances de AMateria. 
+    // Chaque case du tableau peut être initialisée à nullptr pour signifier un emplacement vide.
 
-    public:
-    Charater();
-    Charater( std::string pname ); // + init empty inventory
-    virtual void equip(AMateria* m) = 0; // Ajoute une matière à la 1ère case vide.
-    virtual void unequip(int idx) = 0; // retire une matière sans la supp.
-    virtual void use(int idx, ICharacter& target) = 0; // Utilise la matière d'un index spécifique.
-}
+
+public:
+    Character();
+    Character( std::string pname ); // + init empty inventory
+    Character( const Character& other );
+    Character& operator=( const Character& other );
+    ~Character();
+
+    void equip(AMateria* m); // Ajoute une matière à la 1ère case vide.
+    void unequip(int idx); // retire une matière sans la supp. (Ne dois PAS delete la Materia)
+    void use(int idx, ICharacter& target); // Utilise la matière d'un index spécifique.
+    std::string const& getName() const;
+};
