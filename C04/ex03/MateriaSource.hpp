@@ -1,6 +1,10 @@
 
 #pragma once
 
+#include <iostream>
+
+ #include "IMateriaSource.hpp"
+
 class IMateriaSource;
 
 class MateriaSource : public IMateriaSource

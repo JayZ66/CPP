@@ -1,11 +1,9 @@
 
 #include "MateriaSource.hpp"
 
-//  AMateria*   _inventory[4];
-
 MateriaSource::MateriaSource() {
     for (int i = 0; i < 4; i++)
-        _inventory[i] = nullptr;
+        _inventory[i] = NULL;
     std::cout << "MateriaSource default constructor has been called !" << std::endl;
 }
 
@@ -15,7 +13,7 @@ MateriaSource::MateriaSource( const MateriaSource& other) {
         if (other._inventory[i])
             this->_inventory[i] = other._inventory[i]->clone(); // Need to explain more the clone !!
         else
-            this->_inventory[i] = nullptr;
+            this->_inventory[i] = NULL;
     }
 }
 /*
@@ -26,7 +24,7 @@ suite.
 */
 
 
-MateriaSource::MateriaSource& operator=( const MateriaSource& other ) {
+MateriaSource&  MateriaSource::operator=( const MateriaSource& other ) {
     if (this != &other) {
         for (int i = 0; i < 4; i++) {
             if (this->_inventory[i])
@@ -34,9 +32,10 @@ MateriaSource::MateriaSource& operator=( const MateriaSource& other ) {
             if (other._inventory[i])
                 this->_inventory[i] = other._inventory[i]->clone(); // Need to explain more the clone !!
             else
-                this->_inventory[i] = nullptr;
+                this->_inventory[i] = NULL;
         }
     }
+    return *this;
 }
 /*
 Avant d'assigner les nouvelles matières, tu vérifies si l'inventaire courant a déjà une matière. 
@@ -57,7 +56,7 @@ MateriaSource::~MateriaSource() {
 void    MateriaSource::learnMateria(AMateria* m) {
     if (m) {
         for (int i = 0; i < 4; i++) {
-            if (_inventory[i] == nullptr) {
+            if (_inventory[i] == NULL) {
                 _inventory[i] = m->clone();
                 break ;
             }
@@ -71,10 +70,10 @@ void    MateriaSource::learnMateria(AMateria* m) {
 AMateria*   MateriaSource::createMateria(std::string const & type) {
     for (int i = 0; i < 4; i++) {
         if (_inventory[i] && _inventory[i]->getType() == type) {
-           return _inventory[i].clone();
+           return _inventory[i]->clone();
         }
     }
-    return nullptr;
+    return NULL;
 }
 
 /*

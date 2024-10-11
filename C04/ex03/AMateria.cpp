@@ -1,6 +1,7 @@
 
 #include "AMateria.hpp"
 
+
 AMateria::AMateria() : _type("") {
     std::cout << "AMateria default constructor has been called !" << std::endl;
 }
