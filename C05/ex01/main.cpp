@@ -21,6 +21,20 @@ int	main() {
 
 std::cout << std::endl <<  "-------------------- ERROR TEST -------------------- " << std::endl << std::endl;
 	
+	try {
+		Bureaucrat	Employee("Carole", 120);
+		std::cout << Employee << std::endl;
+		Form		scam("scam", 100, 140);
+		std::cout << scam << std::endl;
+
+		Employee.incrementGrade();
+		std::cout << Employee << std::endl;
+		Employee.signForm(scam);
+		std::cout << scam << std::endl;
+	}
+	catch (const std::exception& e) {
+		std::cerr << "Exception caught: " << e.what() << std::endl;
+	}
 
 	return 0;
 }

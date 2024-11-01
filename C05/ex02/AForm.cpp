@@ -69,6 +69,15 @@ int			AForm::getGradeToExecute() const {
 }
 
 std::ostream& operator<<(std::ostream& info, const AForm& other) {
-    info << "Form's name: " << other.getName() << ", Form's grade to sign: " << other.getGradeToSign() << ", Form's grade to execute: " << other.getGradeToExecute() << ", Form is signed: " << other.getIsSigned() << std::endl;
+    info << "AForm's name: " << other.getName() << ", AForm's grade to sign: " << other.getGradeToSign() << ", AForm's grade to execute: " << other.getGradeToExecute() << ", AForm is signed: " << other.getIsSigned() << std::endl;
     return info;
+}
+
+
+void    AForm::checkExecutionRequirements(const Bureaucrat& executor) const {
+    if (executor.getGrade() >= _gradeToExecute)
+        throw GradeTooLowException("Grade is to low to execute !");
+    else if (!_isSigned)
+        throw FormNotSignedException("Form is not signed !");
+
 }

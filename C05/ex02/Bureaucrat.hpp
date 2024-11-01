@@ -30,9 +30,8 @@ class   Bureaucrat {
 
     void    signForm(Form &form);
 
-};
 
-class GradeTooHighException : public std::exception {
+    class GradeTooHighException : public std::exception {
     public:
         GradeTooHighException(const std::string& message) : _message(message) {}
         virtual ~GradeTooHighException() throw() {}
@@ -53,5 +52,7 @@ class GradeTooLowException : public std::exception {
     private:
         std::string _message;
  };
+
+};
 
 std::ostream&   operator<<(std::ostream& info, const Bureaucrat& other);
