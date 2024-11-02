@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # Nom de l'executable
-NAME = animal
+NAME = Forms
 
 # Compilateur
 CXX := c++ # or g++
@@ -20,8 +20,7 @@ CXX := c++ # or g++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 #Liste des fichiers source.
-SRCS = main.cpp Bureaucrat.cpp AForm.cpp Form.cpp PresidentialPardonForm.cpp \ 
-		RobotomyRequestForm.cpp ShrubberyCreationForm.cpp \
+SRCS = 	Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp main.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
