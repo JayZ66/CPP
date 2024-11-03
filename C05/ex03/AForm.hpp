@@ -2,6 +2,7 @@
 #pragma once
 
 #include <ostream>
+#include <iostream>
 #include <string>
 #include <stdexcept>
 #include "Bureaucrat.hpp"

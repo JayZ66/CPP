@@ -62,7 +62,7 @@ int	main() {
 		AForm*	notFound = lastIntern.makeForm("UnknownForm", "target5");
 
 		if (!notFound) {
-			std::cerr << "No form has been created because of invalid form name !" << std::endl;
+			std::cout << "No form has been created !" << std::endl;
 		}
 
 	return 0;
