@@ -12,6 +12,7 @@ Intern::~Intern() {
 }
 
 Intern& Intern::operator=(const Intern& other) {
+    (void) other;
     return *this;
 }
 
@@ -20,14 +21,14 @@ AForm*  Intern::ShrubberyCreation(const std::string& target) {
 }
 
 AForm*  Intern::RobotomyRequestCreation(const std::string& target) {
-    return new RobotomyRequestCreation(target);
+    return new RobotomyRequestForm(target);
 }
 
 AForm*  Intern::PresidentialPardonCreation(const std::string& target) {
-    return new PresidentialPardonCreation(target);
+    return new PresidentialPardonForm(target);
 }
 
-AForm*    Intern::makeForm(const std:string& formName, const std::string& target) {
+AForm*    Intern::makeForm(const std::string& formName, const std::string& target) {
     std::string formsName[3] = {
         "ShrubberyCreationForm",
         "RobotomyRequestForm",

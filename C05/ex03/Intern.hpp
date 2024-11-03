@@ -23,5 +23,5 @@ class Intern {
     AForm*  RobotomyRequestCreation(const std::string& target);
     AForm*  PresidentialPardonCreation(const std::string& target);
 
-    AForm*    makeForm(const std:string& formName, const std::string& target);
+    AForm*    makeForm(const std::string& formName, const std::string& target);
 };
