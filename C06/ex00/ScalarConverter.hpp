@@ -4,8 +4,14 @@
 #include <iostream>
 #include <string>
 
-class ScalarConverter {
+class ScalarConverter { // Check why it must be a single ton ?? 
     private:
+
+    ScalarConverter();
+    ScalarConverter(ScalarConverter& other);
+    ~ScalarConverter();
+
+    ScalarConverter& operator=(ScalarConverter& other);
 
     public:
 
