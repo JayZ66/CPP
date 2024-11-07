@@ -3,6 +3,10 @@
 
 #include <iostream>
 #include <string>
+#include <limits>
+#include <cstdlib>
+#include <cmath>
+#include <sstream>
 
 class ScalarConverter { // Check why it must be a single ton ?? 
     private:
