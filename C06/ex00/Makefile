@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # Nom de l'executable
-NAME = bureaucrat
+NAME = ScalarType
 
 # Compilateur
 CXX := c++ # or g++
@@ -20,7 +20,7 @@ CXX := c++ # or g++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 #Liste des fichiers source.
-SRCS = main.cpp Bureaucrat.cpp \
+SRCS = main.cpp ScalarConverter.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
