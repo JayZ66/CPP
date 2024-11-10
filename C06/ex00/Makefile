@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # Nom de l'executable
-NAME = ScalarType
+NAME = Convert
 
 # Compilateur
 CXX := c++ # or g++

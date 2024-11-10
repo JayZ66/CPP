@@ -1,83 +1,70 @@
 
 #include "ScalarConverter.hpp"
 
-
-
-// TO DO AGAIN !!!!
-
-
-
 void ScalarConverter::convert(const std::string& literal) {
-    double doubleValue;
-    char charValue = 0;
+    double  doubleValue;
+    char    charValue = 0;
+    int     integerValue = 0;
+    float   floatValue = 0.0;
 
     if (literal.empty()) {
-        std::cerr << "Error: Empty literal string!" << std::endl;
+        std::cerr << "Error: literal string is empty !" << std::endl;
         return;
     }
-
-    // Check if littéral est un char imprimable unique
-    if (literal.length() == 1 && !std::isdigit(literal[0]) && std::isprint(literal[0])) {
-        charValue = literal[0];
-        doubleValue = static_cast<double>(charValue);
+    // Check if littéral est un char unique
+    if (literal.length() == 1 && !std::isdigit(literal[0])) {
+        doubleValue = static_cast<double>(literal[0]);
     }
     // Check if littéral est de type char entre simple quote
-    else if (literal.length() == 3 && literal[0] == '\'' && literal[2] == '\'') {
-        charValue = literal[1];
-        if (!std::isprint(charValue)) {
-            std::cout << "Error: Non-printable character" << std::endl;
-            return;
-        }
-        doubleValue = static_cast<double>(charValue);
-    } 
-    // Sinon, interpréter le littéral comme un nb (double ou float)
-    else {
-        char* endPtr = NULL;
+    else if (literal.length() == 3 && literal[0] == '\'' && literal[2] == '\'')
+        doubleValue = static_cast<double>(literal[1]);
+    else { // so literal is a nb
+        char *endPtr = NULL;
         doubleValue = std::strtod(literal.c_str(), &endPtr);
-
         if (*endPtr != '\0' && !((*endPtr == 'f' || *endPtr == 'F') && *(endPtr + 1) == '\0')) {
-            std::cerr << "Error: Invalid input format!" << std::endl;
+            std::cerr << "Error: Invalid input format !" << std::endl;
             return;
         }
     }
 
-    // Convert to char
+    //Convert to char
     std::cout << "char: ";
     if (doubleValue < std::numeric_limits<char>::min() || doubleValue > std::numeric_limits<char>::max() || std::isnan(doubleValue)) {
-        std::cout << "conversion to char impossible" << std::endl;
-    } else {
-        char c = static_cast<char>(doubleValue);
-        if (std::isprint(c))
-            std::cout << "'" << c << "'" << std::endl;
+        std::cout << "conversion is impossible: out of range or NaN." << std::endl;
+    }
+    else {
+        charValue = static_cast< char>(doubleValue);
+        if (std::isprint(charValue)) {
+            std::cout << "'" << charValue << "'" << std::endl;
+        }
         else
-            std::cout << "Non displayable" << std::endl;
+            std::cerr << "not a printable character." << std::endl;
     }
 
-    // Convert to int
+    //convert to int
     std::cout << "int: ";
-    if (doubleValue < std::numeric_limits<int>::min() || doubleValue > std::numeric_limits<int>::max() || std::isnan(doubleValue)) {
-        std::cout << "conversion to int impossible" << std::endl;
-    } else {
-        int intValue = static_cast<int>(doubleValue);
-        std::cout << intValue << std::endl;
+    if (doubleValue < std::numeric_limits<int>::min() || doubleValue > std::numeric_limits<int>::max() || std::isnan(doubleValue))
+        std::cout << "conversion is impossible: out of range or NaN." << std::endl;
+    else {
+        integerValue = static_cast<int>(doubleValue);
+        std::cout << integerValue << std::endl;
     }
 
-    // Convert to float
+    //Convert to float
     std::cout << "float: ";
-    float floatValue = static_cast<float>(doubleValue);
-    if (std::isnan(doubleValue) || std::isinf(doubleValue)) {
+    floatValue = static_cast<float>(doubleValue);
+    if (std::isinf(doubleValue) || std::isnan(doubleValue))
         std::cout << floatValue << "f" << std::endl;
-    } else {
+    else
         std::cout << floatValue << ".0f" << std::endl;
-    }
 
-    // Convert to double
+    //Convert to double
     std::cout << "double: ";
-    if (std::isnan(doubleValue) || std::isinf(doubleValue)) {
+    if (std::isinf(doubleValue) || std::isnan(doubleValue))
         std::cout << doubleValue << std::endl;
-    } else {
+    else
         std::cout << doubleValue << ".0" << std::endl;
-    }
+
 }
 
 
