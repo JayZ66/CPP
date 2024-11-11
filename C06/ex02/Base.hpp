@@ -5,6 +5,10 @@
 #include <stdexcept>
 #include <stdlib.h>
 
+class A;
+class B;
+class C;
+
 class Base {
     private:
 
@@ -12,8 +16,8 @@ class Base {
 
     virtual ~Base();
 
-    Base*   Base::generate(void);
-    void    Base::identify(Base* p);
-    void    Base::identify(Base& p);
-
 };
+
+Base*   generate(void);
+void    identify(Base* p);
+void    identify(Base& p);

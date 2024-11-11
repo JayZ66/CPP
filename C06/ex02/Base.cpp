@@ -1,8 +1,32 @@
 #include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
+
+Base::~Base() {
+    std::cout << "Base destructor has been called !" << std::endl;
+}
 
 // créer une instance aléatoire de A, B, ou C et la retourner sous forme de pointeur de type Base.
-Base*   Base::generate(void) {
-    if (rand % 2)
+Base*   generate(void) {
+    int randomNumber = rand() % 3;
+
+    switch (randomNumber) {
+        case 0:
+            std::cout << "A object created !" << std::endl;
+            return (new A);
+            break;
+        case 1:
+            std::cout << "B object created !" << std::endl;
+            return (new B);
+            break;
+        case 2:
+            std::cout << "C object created !" << std::endl;
+            return (new C);
+            break;
+        default:
+            return NULL;
+    }
 }
 
 /*
@@ -10,12 +34,48 @@ dynamic_cast permet de vérifier si le type réel de l’objet pointé correspon
 en retournant un pointeur non nul si le cast est réussi, ou nul sinon.
 */
 
-// utilisera un pointeur de type Base* pour déterminer le type réel de l’objet.
-void    Base::identify(Base* p) { 
+// utilisera un pointeur de type Base* pour déterminer le type réel de l’objet pointé par p et de print le résultat.
+void    identify(Base* p) { 
 
+    if (dynamic_cast<A*>(p) != NULL) // Check why we don't need to declare our derived class object pointer !
+        std::cout << "Object pointed by p is A !" << std::endl;
+    else if (dynamic_cast<B*>(p) != NULL)
+        std::cout << "Object pointed by p is B !" << std::endl;
+    else if (dynamic_cast<C*>(p) != NULL)
+        std::cout << "Object pointed by p is C !" << std::endl; // Why can't use *this here ??
+    else
+        std::cout << "P is not pointing an derived object from Base class.";
 }
 
 // faire la même chose mais avec une référence, sans convertir la référence en pointeur.
-void    Base::identify(Base& p) {
+void    identify(Base& p) {
 
+    try {
+        A& aRef = dynamic_cast<A&>(p);
+        std::cout << "p is a reference to A derived class object !" << std::endl;
+        return ;
+    }
+    catch (std::bad_cast& e) {
+        std::cout << "Object is not of type A.";
+    }
+    
+    try {
+        B& bRef = dynamic_cast<B&>(p);
+        std::cout << "p is a reference to B derived class object !" << std::endl;
+        return;
+    }
+    catch (std::bad_cast& e) {
+        std::cout << "Object is not of type B." << std::endl;
+    }
+
+    try  {
+        C& cRef = dynamic_cast<C&>(p);
+        std::cout <<  "p is a reference to C derived class object !" << std::endl;
+        return;
+    }
+    catch (std::bad_cast& e) {
+        std::cout << "Object is not of type C." << std::endl;
+    }
+
+    std::cout << "p is not a reference to any derived class object !" << std::endl;
 }

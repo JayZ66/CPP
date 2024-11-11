@@ -20,7 +20,7 @@ CXX := c++ # or g++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 #Liste des fichiers source.
-SRCS = main.cpp Bureaucrat.cpp \
+SRCS = main.cpp Base.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 

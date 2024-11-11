@@ -1,7 +1,7 @@
 #pragma once 
 
-class A : public Base {
-    private:
+#include "Base.hpp"
 
-    public:
+class A : public Base {
+
 };
