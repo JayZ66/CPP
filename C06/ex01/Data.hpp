@@ -1,18 +1,8 @@
 
 #pragma once
 
-class Data {
-    private:
+struct Data {
     int id;
     std::string name;
     float value;
-
-    public:
-
-    Data();
-    Data(const Data& other);
-    ~Data();
-
-    Data& operator=(const Data& other);
-
 };

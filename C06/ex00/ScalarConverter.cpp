@@ -33,7 +33,7 @@ void ScalarConverter::convert(const std::string& literal) {
         std::cout << "conversion is impossible: out of range or NaN." << std::endl;
     }
     else {
-        charValue = static_cast< char>(doubleValue);
+        charValue = static_cast<char>(doubleValue);
         if (std::isprint(charValue)) {
             std::cout << "'" << charValue << "'" << std::endl;
         }
@@ -41,7 +41,7 @@ void ScalarConverter::convert(const std::string& literal) {
             std::cerr << "not a printable character." << std::endl;
     }
 
-    //convert to int
+    //Convert to int
     std::cout << "int: ";
     if (doubleValue < std::numeric_limits<int>::min() || doubleValue > std::numeric_limits<int>::max() || std::isnan(doubleValue))
         std::cout << "conversion is impossible: out of range or NaN." << std::endl;
@@ -56,97 +56,25 @@ void ScalarConverter::convert(const std::string& literal) {
     if (std::isinf(doubleValue) || std::isnan(doubleValue))
         std::cout << floatValue << "f" << std::endl;
     else
-        std::cout << floatValue << ".0f" << std::endl;
+        std::cout << std::fixed << std::setprecision(1) << floatValue << "f" << std::endl;
 
     //Convert to double
     std::cout << "double: ";
     if (std::isinf(doubleValue) || std::isnan(doubleValue))
         std::cout << doubleValue << std::endl;
     else
-        std::cout << doubleValue << ".0" << std::endl;
+        std::cout << std::fixed << std::setprecision(1) << doubleValue << std::endl;
 
 }
 
+/*
+std::fixed et std::setprecision => Cela permet d'éviter l'ajout de .0 dans les affichages de float et double lorsqu'il n'y a 
+pas de décimales ou d'obtenir des valeurs correctement formatées.
 
-// static void    ScalarConverter::convert(const std::string& literal) {
-    
-//     int integerValue;
-//     double  doubleValue;
-//     float   floatValue;
-//     char    charValue;
-//     size_t  index = 0;
-//     // Check si la string literal est vide !
-
-//     if (literal.empty()) {
-//         std::cerr << "Literal string is empty, can't convert void string !" << std::endl;
-//         return;
-//     }
-
-//     if (literal.length() == 3 && literal[0] == '\'' && literal[2] == '\'') {
-
-//         charValue = literal[1];
-//         if (!isprint(charValue)) {
-//             std::cout << "This is not a printable character !" << std::endl;
-//             return; // Check if we return or do something.
-//         }
-//         else {
-//             integerValue = static_cast<int>(charValue);
-//             std::cout << "int: " << integerValue << std::endl;
-
-//             floatValue = static_cast<float>(charValue);
-//             std::cout << "float: " << floatValue << std::endl;
-
-//             doubleValue = static_cast<double>(charValue);
-//             std::cout << "double: " << doubleValue;
-//         }
-//     }
-//     else {
-//         char *endPtr;
-//         doubleValue = strtod(literal.c_str(), &endPtr); // transformer une string, représentant textuellement un nb floattant en double.
-//         if ((*endPtr == 'f' || *endPtr == 'F') && *(endPtr + 1) == '\0') { // Check si float
-//             floatValue = static_cast<float>(doubleValue);
-//             std::cout << "float: " << floatValue << "f" << std::endl;
-
-//             if (doubleValue >= std::numeric_limits<int>::min() && doubleValue <= std::numeric_limits<int>::max()) {
-//                 integerValue = static_cast<int>(doubleValue);
-//                 std::cout << "int: " << integerValue << std::endl;
-//             }
-//             else
-//                 std::cerr << "int: literal is out of range !" << std::endl;
-            
-//             // Maybe add a check for the integer value, if the literal is out of range !
-//             charValue = static_cast<char>(integerValue);
-//             if (isprint(charValue))
-//                 std::cout << "char: " << charValue << std::endl;
-//             else
-//                 std::cerr << "This is not a printable character !" << std::endl;
-
-//             std::cout << "double: " << doubleValue << std::endl;
-//         }
-//         else if (*endPtr == '\0') { // Check si le littéral a bien été converted.
-//             if (doubleValue < std::numeric_limits<int>::min() || doubleValue > std::numeric_limits<int>::max()) {  // Check if we check min/max for double !!
-//                 std::cout << "int: literal is out of range !" << std::endl;
-//                 return;
-//             }
-//             else {
-//                 integerValue = static_cast<int>(doubleValue);
-//                 std::cout << "int: " << integerValue << std::endl;
-
-//                 charValue = static_cast<char>(integerValue);
-//                 if (isprint(charValue))
-//                     std::cout << "char: " << charValue;
-//                 else
-//                     std::cerr << "This is not a printable character !" << std::endl;
-
-//                 floatValue = static_cast<float>(integerValue);
-//                 std::cout << "float: " << floatValue << std::endl;
-
-//                 doubleValue = static_cast<double>(integerValue);
-//                 std::cout << "double: " << doubleValue << std::endl;
-//             }
-//         }
-//         else {
-//             std::cerr << "This is not an integer or a char value !" << std::endl;
-//         }
-//     }
-// }
+- std::fixed : Permet d’afficher les nombres à virgule flottante avec un nombre de décimales constant.
+on force l'affichage en notation décimale fixe (exemple : 123456.0 au lieu de 1.23456e+05)
+- std::setprecision(1) : Fixe le nombre de chiffres après la virgule. Ici, 1 est utilisé pour obtenir un seul chiffre après 
+la virgule (comme .0), mais vous pouvez l’adapter selon vos besoins.
+std::setprecision(n) détermine le nombre total de chiffres significatifs affichés (à droite et à gauche de la virgule) si 
+std::fixed n’est pas utilisé.
+*/

@@ -8,6 +8,7 @@
 #include <cmath>
 #include <sstream>
 #include <cctype>
+#include <iomanip>
 
 class ScalarConverter { // Check why it must be a single ton ?? 
     private:
