@@ -27,7 +27,7 @@ int main(){
         std::cout << "Serialization is a failure !" << std::endl;
         return 1;
     }
-    // Check si values are the same ??
+    // Check if values are the same.
 
     std::cout << "Let's check object values: " << std::endl;
     std::cout << "Data values: " << std::endl << "ID - " << data.id << std::endl 

@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # Nom de l'executable
-NAME = bureaucrat
+NAME = Real
 
 # Compilateur
 CXX := c++ # or g++

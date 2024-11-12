@@ -15,7 +15,7 @@ Base*   generate(void) {
         case 0:
             std::cout << "A object created !" << std::endl;
             return (new A);
-            break;
+            break; // Still needed but return should be enough.
         case 1:
             std::cout << "B object created !" << std::endl;
             return (new B);
@@ -52,30 +52,31 @@ void    identify(Base& p) {
 
     try {
         A& aRef = dynamic_cast<A&>(p);
+        (void) aRef;
         std::cout << "p is a reference to A derived class object !" << std::endl;
-        return ;
-    }
-    catch (std::bad_cast& e) {
-        std::cout << "Object is not of type A.";
-    }
-    
-    try {
-        B& bRef = dynamic_cast<B&>(p);
-        std::cout << "p is a reference to B derived class object !" << std::endl;
         return;
     }
-    catch (std::bad_cast& e) {
-        std::cout << "Object is not of type B." << std::endl;
+    catch (std::exception& e)
+    {
+        // std::cout << "Object is not of type A." << std::endl;
+        try {
+            B& bRef = dynamic_cast<B&>(p);
+            (void) bRef;
+            std::cout << "p is a reference to B derived class object !" << std::endl;
+            return;
+        }
+        catch (std::exception& e)
+        {
+            // std::cout << "Object is not of type B." << std::endl;
+            try  {
+            C& cRef = dynamic_cast<C&>(p);
+            (void) cRef;
+            std::cout <<  "p is a reference to C derived class object !" << std::endl;
+            return;
+            }
+            catch (std::exception& e) {
+               std::cout << "p is not a reference to any derived class object !" << std::endl;
+            }
+        }
     }
-
-    try  {
-        C& cRef = dynamic_cast<C&>(p);
-        std::cout <<  "p is a reference to C derived class object !" << std::endl;
-        return;
-    }
-    catch (std::bad_cast& e) {
-        std::cout << "Object is not of type C." << std::endl;
-    }
-
-    std::cout << "p is not a reference to any derived class object !" << std::endl;
 }
