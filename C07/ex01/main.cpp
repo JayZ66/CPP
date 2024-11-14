@@ -38,9 +38,7 @@ void	changeWord(std::string& string) {
 	string = "Modified";
 }
 
-
-
-// CHECK FOR CREATION OF EMPTY ARRAY
+// No need to allocate memory for our arrays.
 int main() {
 
 	// Testing int array

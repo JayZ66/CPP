@@ -4,7 +4,7 @@
 template <typename T>
 class   Array {
     private:
-        T* element; // Why pointer ?
+        T* array; // Pointeur vers le tableau qui contient des elements de type T.
         size_t  sizeArray;
 
     public:
@@ -14,4 +14,10 @@ class   Array {
         ~Array();
 
         Array& operator=(const Array& other);
+        T*    operator[](size_t index);
+
+        size_t size();
+
+        T*  giveArray() const;
 };
+

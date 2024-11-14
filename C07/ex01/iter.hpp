@@ -26,3 +26,11 @@ void    iter(T* array, int size, void(*function)(T&)) {
         function(array[i]);
     }
 }
+
+// To handle tests. ASK WHY PRECISELY
+void    iter(T* array, int size, void(*function)(const T&)) {
+
+    for (int i = 0; i < size; i++) {
+        function(array[i]);
+    }
+}
