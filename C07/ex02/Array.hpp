@@ -14,10 +14,11 @@ class   Array {
         ~Array();
 
         Array& operator=(const Array& other);
-        T*    operator[](size_t index);
+        T*    operator[](unsigned int index);
+        const T*    operator[](unsigned int index) const; // Pour accéder aux éléments d'un tableau const.
 
-        size_t size();
+        size_t size() const;
 
-        T*  giveArray() const;
+        T*  getArray() const;
 };
 
