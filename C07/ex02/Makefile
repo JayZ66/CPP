@@ -22,6 +22,8 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 #Liste des fichiers source.
 SRCS = main.cpp \
 
+# HEADERS = Array.hpp
+
 OBJS = $(SRCS:.cpp=.o)
 
 # Regle par defaut pour l'executable
