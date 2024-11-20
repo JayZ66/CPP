@@ -12,7 +12,7 @@ class   Array {
         size_t  sizeArray;
 
     public:
-        Array() : sizeArray(0), array(NULL) {}
+        Array() : array(NULL), sizeArray(0) {}
 
         Array(unsigned int n) : array(new T[n]) {
             sizeArray = n;
