@@ -45,7 +45,7 @@ class   Array {
                 this->sizeArray = other.size();
                 if (this->sizeArray > 0) {
                     this->array = new T[this->sizeArray];
-                    for (int i = 0; i < this->sizeArray; i++) {
+                    for (size_t i = 0; i < this->sizeArray; i++) {
                         this->array[i] = other.array[i];
                     }
                 }
@@ -56,7 +56,7 @@ class   Array {
         }
 
         // Return a ref. because it represents the direct access to an element of the array.
-        T&    operator[](size_t index) { // We don't check if it's < 0
+        T&    operator[](size_t index) {
             if (index >= this->size()) {
                 std::ostringstream message;
                 message << "Index " << index << " is out of range (size : " << this->size() << ")";

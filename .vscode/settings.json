@@ -5,7 +5,9 @@
         "limits": "cpp",
         "ostream": "cpp",
         "string": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "*.tpp": "cpp",
+        "stdexcept": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

@@ -1,7 +1,7 @@
 #include "iter.hpp"
 
 template<typename T>
-void    printArrayElement(T& element) {
+void    printArrayElement(const T& element) {
 
 	std::cout << element << " ";
 }
@@ -42,16 +42,22 @@ void	changeWord(std::string& string) {
 int main() {
 
 	// Testing int array
+	const int constIntArray[4] = {3, 4, 5, 6}; // Need to define it here as it's a const array
+	std::cout << "Const int array: [ ";
+	::iter(constIntArray, 4, printArrayElement<const int>);
+	std::cout << "]" << std::endl;
+	// ::iter(constIntArray, 4, addOne<int>); Test to fail !
+	
 	int* intArray = new int[4];
 	int value = 0;
 	initArray(intArray, value, 4);
 	std::cout << "Int array: [ ";
-	::iter(intArray, 4, printArrayElement<int>);
+	::iter(intArray, 4, printArrayElement<const int>);
 	std::cout << "]" << std::endl;
 
 	::iter(intArray, 4, addOne<int>);
 	std::cout << "Int array updated: [ ";
-	::iter(intArray, 4, printArrayElement<int>);
+	::iter(intArray, 4, printArrayElement<const int>);
 	std::cout << "]" << std::endl;
 
 	// Testing char array
@@ -60,12 +66,12 @@ int main() {
 	char	character = 'a';
 	initArray(charArray, character, 4);
 	std::cout << "Char array: [ ";
-	::iter(charArray, 4, printArrayElement<char>);
+	::iter(charArray, 4, printArrayElement<const char>);
 	std::cout << "]" << std::endl;
 
 	::iter(charArray, 4, toUpper);
 	std::cout << "Char array updated: [ ";
-	::iter(charArray, 4, printArrayElement<char>);
+	::iter(charArray, 4, printArrayElement<const char>);
 	std::cout << "]" << std::endl;
 
 	//Testing char* array
@@ -84,12 +90,12 @@ int main() {
 	float digit = 6.6;
 	initArray(floatArray, digit, 4);
 	std::cout << "Float array: [ ";
-	::iter(floatArray, 4, printArrayElement<float>);
+	::iter(floatArray, 4, printArrayElement<const float>);
 	std::cout << "]" << std::endl;
 
 	::iter(floatArray, 4, addOne<float>);
 	std::cout << "Float array updated: [ ";
-	::iter(floatArray, 4, printArrayElement<float>);
+	::iter(floatArray, 4, printArrayElement<const float>);
 	std::cout << "]" << std::endl;
 
 	delete[]	intArray;
