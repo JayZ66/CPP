@@ -41,13 +41,14 @@ void	changeWord(std::string& string) {
 // No need to allocate memory for our arrays.
 int main() {
 
-	// Testing int array
+	// Testing const int array
 	const int constIntArray[4] = {3, 4, 5, 6}; // Need to define it here as it's a const array
 	std::cout << "Const int array: [ ";
 	::iter(constIntArray, 4, printArrayElement<const int>);
 	std::cout << "]" << std::endl;
 	// ::iter(constIntArray, 4, addOne<int>); Test to fail !
 	
+	// Testing int array
 	int* intArray = new int[4];
 	int value = 0;
 	initArray(intArray, value, 4);

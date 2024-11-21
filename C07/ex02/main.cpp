@@ -92,7 +92,7 @@ int	main() {
 
 	std::cout << "Digits array creation with size of " << digits.size() << std::endl;
 	for (size_t i = 0; i < digits.size(); i++) {
-		digits[i] = i * 50;
+		digits[i] = static_cast<int>(i * 50);
 		std::cout << "digits[" << i << "] value: " << digits[i] << std::endl;
 	}
 
@@ -130,7 +130,7 @@ int	main() {
 	Array<int>	assignation(15);
 	std::cout << "Creation of assignation array with the size of " << assignation.size() << std::endl;
 	for (size_t i = 0; i < assignation.size(); i++) {
-		assignation[i] = i * (-10);
+		assignation[i] = static_cast<int>(i * (-10));
 		std::cout << "assignation[" << i << "] value: " << assignation[i] << std::endl;
 	}
 
@@ -164,12 +164,28 @@ int	main() {
 		std::cerr << "Caught exception: " << e.what() << std::endl;
 	}
 
-	// std::cout << "Test const array." << std::endl;
-	// Array<const double>	constDouble(6) = {6.6, 6.6, 6.6, 6.6, 6.6};
-	// std::cout << "Creation of const double array with the size of " << assignation.size() << std::endl;
-	// for (size_t i = 0; i < constDouble.size(); i++) {
-	// 	std::cout << "constDouble[" << i << "] value: " << constDouble[i] << std::endl;
-	// }
+	try {
+        Array<int> arr(5);
+
+        // Initialisation
+        for (size_t i = 0; i < arr.size(); ++i) {
+            arr[i] = static_cast<int>(i * 10);
+        }
+
+        // Instance constante
+        const Array<int> constArr = arr;
+
+        // Lecture des éléments avec const operator[]
+        for (size_t i = 0; i < constArr.size(); ++i) {
+            // int value = constArr[i]; // Test accès via const operator[]
+            std::cout << "Element " << i << ": " << constArr[i] << std::endl;
+        }
+
+		// constArr[1] = 0;
+    } catch (const std::exception& e) {
+        std::cerr << "Exception attrapée : " << e.what() << std::endl;
+    }
+
 
 }
 

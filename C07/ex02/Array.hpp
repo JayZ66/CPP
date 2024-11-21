@@ -70,7 +70,7 @@ class   Array {
         const T&    operator[](size_t index) const {
             if (index >= this->size()) {
                 std::ostringstream message;
-                message << "Index " << index << " is out of range (size : " << this->size << ")";
+                message << "Index " << index << " is out of range (size : " << this->size() << ")";
                 throw std::out_of_range(message.str());
             }
             else
