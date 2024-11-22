@@ -104,10 +104,12 @@ int	main() {
 		std::cerr << "Caught exception: " << e.what() << std::endl;
 	}
 
+	std::cout << std::endl;
 	std::cout << "Creating empty array." << std::endl;
 	Array<int> empty;
 	std::cout << "Size of empty array: " << empty.size() << std::endl;
 
+	std::cout << std::endl;
 	std::cout << "Test copy constructor." << std::endl;
 	Array<int>	copy(digits);
 	std::cout << "Size of copy array is " << copy.size() << std::endl;
@@ -115,18 +117,21 @@ int	main() {
 		std::cout << "copy[" << i << "] value: " << copy[i] << std::endl;
 	}
 
+	std::cout << std::endl;
 	std::cout << "Modification of copy array values." << std::endl;
 	for (size_t i = 0; i < copy.size(); i++) {
 		copy[i] += 15;
 		std::cout << "copy[" << i << "] modified value: " << copy[i] << std::endl;
 	}
 
+	std::cout << std::endl;
 	std::cout << "Modification of digits array values." << std::endl;
 	for (size_t i = 0; i < digits.size(); i++) {
 		digits[i] *= 100;
 		std::cout << "digits[" << i << "] modified value: " << digits[i] << std::endl;
 	}
 
+	std::cout << std::endl;
 	Array<int>	assignation(15);
 	std::cout << "Creation of assignation array with the size of " << assignation.size() << std::endl;
 	for (size_t i = 0; i < assignation.size(); i++) {
@@ -142,6 +147,7 @@ int	main() {
 		std::cout << "assignation[" << i << "] modified value: " << assignation[i] << std::endl;
 	}
 
+	std::cout << std::endl;
 	Array<std::string>	string(6);
 	string[0] = "Hello, ";
 	string[1] = "how ";
@@ -154,8 +160,8 @@ int	main() {
 	for (size_t i = 0; i < string.size(); i++) {
 		std::cout << string[i];
 	}
-	std::cout << std::endl;
 
+	std::cout << std::endl;
 	std::cout << "Test to access out of range value." << std::endl;
 	try {
 		string[-3] = "Coucou";
@@ -164,24 +170,23 @@ int	main() {
 		std::cerr << "Caught exception: " << e.what() << std::endl;
 	}
 
+	std::cout << std::endl;
+	std::cout << "Test to access a const array." << std::endl;
 	try {
         Array<int> arr(5);
 
-        // Initialisation
         for (size_t i = 0; i < arr.size(); ++i) {
             arr[i] = static_cast<int>(i * 10);
         }
 
-        // Instance constante
         const Array<int> constArr = arr;
 
-        // Lecture des éléments avec const operator[]
+        // Read avec const operator[]
         for (size_t i = 0; i < constArr.size(); ++i) {
-            // int value = constArr[i]; // Test accès via const operator[]
             std::cout << "Element " << i << ": " << constArr[i] << std::endl;
         }
 
-		// constArr[1] = 0;
+		// constArr[1] = 0; // Test access constArr value with operator[]
     } catch (const std::exception& e) {
         std::cerr << "Exception attrapée : " << e.what() << std::endl;
     }

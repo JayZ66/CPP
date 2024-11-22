@@ -20,17 +20,17 @@ template <typename T, typename Func>
     determiner que Func represente un type de fonction qui prend une ref. a un element T comme arg. (ici array[i])
 */
 
-void    iter(T* array, int size, void(*function)(T&)) {
+void    iter(T* array, size_t size, void(*function)(T&)) {
 
-    for (int i = 0; i < size; i++) {
+    for (size_t i = 0; i < size; i++) {
         function(array[i]);
     }
 }
 
 template <typename T>
-void    iter(T* array, int size, void(*function)(const T&)) {
+void    iter(T* array, size_t size, void(*function)(const T&)) {
 
-    for (int i = 0; i < size; i++) {
+    for (size_t i = 0; i < size; i++) {
         function(array[i]);
     }
 }

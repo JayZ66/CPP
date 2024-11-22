@@ -38,7 +38,7 @@ void	changeWord(std::string& string) {
 	string = "Modified";
 }
 
-// No need to allocate memory for our arrays.
+
 int main() {
 
 	// Testing const int array

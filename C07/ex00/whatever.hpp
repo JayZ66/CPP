@@ -4,7 +4,7 @@
 #include <iostream>
 
 template <typename T>
-void swap(T& a, T& b) { // In order to change real/original values. (to check)
+void swap(T& a, T& b) { // In order to change real/original values.
     T temp = a;
     a = b;
     b = temp;
