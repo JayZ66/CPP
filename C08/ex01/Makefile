@@ -20,7 +20,7 @@ CXX := c++ # or g++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 #Liste des fichiers source.
-SRCS = main.cpp \
+SRCS = main.cpp Span.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
