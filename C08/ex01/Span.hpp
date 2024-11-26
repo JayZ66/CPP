@@ -11,6 +11,8 @@
 #include <sstream>
 #include <limits>
 #include <time.h>
+#include <ctime>
+#include <cstdlib>
 
 class Span {
     private:
@@ -30,7 +32,7 @@ class Span {
     int    shortestSpan(); // Return the shortest distance between two nb.
     int    longestSpan(); // Return the longest distance between two nb.
 
-    std::vector<int>    getIntArray();
+    std::vector<int>&    getIntArray();
 
 class shortestSpanException : public std::exception {
     private:
@@ -67,6 +69,14 @@ class addElementException : public std::exception {
             return _message.c_str();
         }
 };
+
+template <typename T>
+void	addNumbers(typename T::iterator begin, typename T::iterator end) {
+	if (std::distance(begin, end) + intArray.size() > _maxSize) {
+		throw addElementException("Cannot add to the container, no space left.");
+	}
+	intArray.insert(intArray.end(), begin, end);
+}
 
 
 };

@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # Nom de l'executable
-NAME = Template
+NAME = Span
 
 # Compilateur
 CXX := c++ # or g++
