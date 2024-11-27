@@ -36,8 +36,7 @@ int    Span::longestSpan() { // Return the longest distance between two nb.
     int min = *std::min_element(intArray.begin(), intArray.end()); // Return a pointer to the min/max value of the container.
     int max = *std::max_element(intArray.begin(), intArray.end());
 
-    int longestSpan = max - min;
-    return longestSpan;
+    return (max - min);
 }
 
 int    Span::shortestSpan(){ // Return the shortest distance between two nb.
