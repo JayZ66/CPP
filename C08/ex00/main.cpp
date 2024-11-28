@@ -20,7 +20,7 @@ int main() {
 
     try {
         std::cout << std::endl;
-        std::vector<int>::iterator itFirst = ::easyfind<std::vector<int> >(vectorArray, 3); // Specifier le type T au plus grand appelant (ici le retun de easyfind) et determinera celui en param. du coup
+        std::vector<int>::iterator itFirst = ::easyfind<std::vector<int> >(vectorArray, 3); // Specifier le type T au plus grand appelant (ici le return de easyfind) et determinera celui en param. du coup
         std::cout << "Found in vectorArray value: " << *itFirst << std::endl;
 
     }
