@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # Nom de l'executable
-NAME = Template
+NAME = MutantStack
 
 # Compilateur
 CXX := c++ # or g++

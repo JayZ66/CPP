@@ -43,6 +43,8 @@ container_type :
 */
     typedef typename std::stack<T>::container_type::iterator iterator;
     typedef typename std::stack<T>::container_type::const_iterator const_iterator;
+    typedef typename std::stack<T>::container_type::reverse_iterator revIterator;
+    typedef typename std::stack<T>::container_type::const_reverse_iterator const_revIterator;
 
     iterator begin() {
         return this->c.begin();
@@ -57,6 +59,23 @@ container_type :
     const_iterator end() const {
         return this->c.end();
     }
+    
+    revIterator    rbegin() {
+        return this->c.rbegin();
+    }
+
+    revIterator    rend() {
+        return this->c.rend();
+    }
+
+    const_revIterator  rbegin() const {
+        return this->c.rbegin();
+    }
+
+    const_revIterator  rend() const {
+        return this->c.rend();
+    }
+
 };
 
 /*

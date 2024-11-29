@@ -24,7 +24,7 @@ void    Span::addNumber(int number) {
         throw addElementException("Container is full, maxSize has been reached");
     else {
         intArray.push_back(number);
-        std::cout << "Number " << number << " has been successfully added." << std::endl;
+        std::cout << "Number " << number << " has been successfully added.";
     }
     std::cout << std::endl;
 }
@@ -48,15 +48,9 @@ int    Span::shortestSpan(){ // Return the shortest distance between two nb.
     int diff;
     int minSpan = std::numeric_limits<int>::max(); // Init minSpan with the max int.
     for (size_t i = 0; i < sortedArray.size() - 1; i++) {
-        // std::cout << "Calculating shortest span: " << sortedArray.at(i+1) << " - " << sortedArray.at(i) << std::endl;
         diff = sortedArray.at(i+1) - sortedArray.at(i);
         if (diff < minSpan)
             minSpan = diff;
-        // std::cout << "Diff: " << diff << std::endl;
     }
     return minSpan;
-}
-
-std::vector<int>&    Span::getIntArray() {
-    return intArray;
 }

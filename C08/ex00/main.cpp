@@ -6,7 +6,7 @@ int main() {
     int array[] = {6, 5, 4, 3, 2, 1, 0};
 
     std::vector<int> vectorArray;
-    std::list<int>  listArray;
+    std::list<int>  listArray; // Need to use an iterator to access elements (not at() or [])
     std::deque<int> dequeArray;
 
     std::cout << "Content of containers: " << std::endl;
@@ -20,8 +20,8 @@ int main() {
 
     try {
         std::cout << std::endl;
-        std::vector<int>::iterator itFirst = ::easyfind<std::vector<int> >(vectorArray, 3); // Specifier le type T au plus grand appelant (ici le return de easyfind) et determinera celui en param. du coup
-        std::cout << "Found in vectorArray value: " << *itFirst << std::endl;
+        std::vector<int>::iterator itArray = ::easyfind<std::vector<int> >(vectorArray, 3); // Specifier le type T au plus grand appelant (ici le return de easyfind) et determinera celui en param. du coup
+        std::cout << "Found in vectorArray value: " << *itArray << std::endl;
 
     }
     catch (const std::exception& e) {
@@ -49,7 +49,7 @@ int main() {
             i++;
         }
         for (itList = listArray.begin(); itList != listArray.end(); itList++) 
-            std::cout << "listArray[" << i << "] modified value: " << *itList << std::endl;
+            std::cout << "listArray modified value: " << *itList << std::endl;
         
         std::cout << std::endl;
         itList = ::easyfind<std::list<int> >(listArray, 150);
