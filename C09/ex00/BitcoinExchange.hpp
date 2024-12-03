@@ -6,6 +6,7 @@
 #include <fstream>
 #include <ostream>
 #include <iostream>
+#include <cstdlib>
 
 class BitcoinExchange {
     private:
@@ -19,7 +20,7 @@ class BitcoinExchange {
     BitcoinExchange& operator=(const BitcoinExchange& other);
 
     void    loadExchangeRates(const std::string& filePath);
-    bool    isValidDate(const std::string& date);
+    void    isValidDate(const std::string& date);
 
     class   FileException : public std::exception {
         private:
@@ -27,6 +28,17 @@ class BitcoinExchange {
         public:
             FileException(const std::string& message) : _message(message) {}
             virtual ~FileException() throw() {}
+            virtual const char* what() const throw() {
+                return _message.c_str();
+            }
+    };
+
+    class   DateException : public std::exception {
+        private:
+            std::string _message;
+        public:
+            DateException(const std::string& message) : _message(message) {}
+            virtual ~DateException() throw() {}
             virtual const char* what() const throw() {
                 return _message.c_str();
             }
