@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # Nom de l'executable
-NAME = Bitcoin
+NAME = btc
 
 # Compilateur
 CXX := c++ # or g++

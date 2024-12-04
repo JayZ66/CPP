@@ -43,7 +43,11 @@ void    BitcoinExchange::loadExchangeRates(const std::string& filePath) {
 		if (!getline(cut, date, ',')) //Extraire jusqu'à la première virgule.
 			continue ;
 		// CHECK DATE FORMAT
-		isValidDate(date); // try !!
+		try {
+			isValidDate(date); // try !!
+		} catch (std::exception& e) {
+			throw();
+		}
 		std::getline(cut, strRate); // Extraire le taux.
 		if (strRate.empty()){ // Throw exception
 			std::cerr << "Bitcoin rate is empty !" << std::endl;
@@ -120,12 +124,10 @@ void	BitcoinExchange::isValidDate(const std::string& date) {
 		throw DateException("Date format is wrong - Day should be between 1 to 31");
 	
 	const int	daysNbInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	if (month == 2 && isLeapYear(year)) {
-		if (day > 29)
-			throw DateException("Date format is wrong - Invalid day for February in a leap year");
-		else if (day > daysNbInMonth[month - 1])
-			throw DateException("Date format is wrong - Invalid day for the given month");
-	}
+	if (isLeapYear(year))
+		daysNbInMonth[1] = 29;
+	if (day > daysInMonth[month - 1])
+		throw DateException("Day not good in month.");
 
 	return ;
 }
@@ -156,5 +158,110 @@ Convertis ces parties en entiers à l'aide de std::stoi().
 Étape 3 : Valider la date
 Vérifie les plages pour l'année, le mois et le jour.
 Pour les jours, crée une liste des jours maximums pour chaque mois et gère les années bissextiles.
-*/, 
-, ,
+*/
+
+void	BitcoinExchange::isValidDate(const std::string& date) const {
+
+	if (date.length() != 10)
+		throw DateException("Length not good");
+	if (date[4] != '-' || date[7] != '-')
+		throw DateException("Date format not good");
+
+	// if (!isNumeric(date.substr(0, 4)) || !isNumeric(date.substr(5, 2)) || !isNumeric(date.substr(8, 2)))
+	// 	throw DateException("Date format not good - Non numeric data");
+	try {
+		int	year = std::stoi(date.substr(0, 4), NULL, 10);
+		int	month = std::stoi(date.substr(5, 2), NULL, 10);
+		int	day = std::stoi(date.substr(8, 2), NULL, 10);
+	
+		if (year < 0)
+		throw DateException("Wrong year");
+	if (month < 1 || month > 12)
+		throw DateException("Wrong month");
+	if (day < 1 || day > 31)
+		throw	DateException("Wrong day");
+
+	int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	if (isLeapYear(year))
+		daysInMonth[1] = 29;
+	if (day > daysInMonth[month - 1])
+		throw DateException("Day not good in month.");
+	}
+	catch (const std::invalid_argument&) { // Test if other errors are not going in this catch ??
+		throw DateException("Date format error - Invalid numeric format");
+	} catch (const std::out_of_range&) {
+		throw DateException("Date format error - Value out of range");
+	}
+}
+
+/*
+To find the the bitcoint price for the closest previous date in std::map for a given date (if this given date is not found)
+=> Si la date utilisée en entrée n'existe pas dans la BDD, alors on utilise la date la plus proche dans la BDD.
+*/
+ std::string	BitcoinExchange::findRateForClosestDate(const std::string& date) const {
+
+	std::map<std::string, float>::const_iterator	it = exchangeRates.lower_bound(date); // return un it. vers le 1er élément dont la clé n'est pas inférieur à date.
+	if (it == exchangeRates.begin() && it->first != date)
+		throw DateException("No earlier date found for: " + date);
+	if (it == exchangeRates.end() || it->first != date)
+		--it;
+	return it->second;
+ }
+
+    void    manageInputFile(const std::string& filePath) {
+
+		std::ifstream	file(filePath);
+
+		if (!file.is_open()) {
+			throw FileException("Error - Could not open file");
+		}
+
+		std::string	line;
+		std::getline(file, line);
+		while (getline(file, line)) {
+			std::stringstream	ss(line);
+			std::string date;
+			std::string	strRate;
+
+			if (!std::getline(ss, date, '|') || !std::getline(ss, strRate))
+				throw	FileException("Error - Bad input"); // Continue or not ?
+
+
+		// Supp. les espaces inutiles (avant et après la date et la valeur)
+			date.erase(0, date.find_first_not_of("\t"));
+			strRate.erase(strRate.find_last_not_of("\t") + 1);
+
+		// Check si la date est valide (avec try)
+			try {
+				isValidDate(date);
+			} catch (const std::exception& e) {
+				std::cerr << "Exception caught - Bad input => " << line << std::endl;
+				continue;
+			}
+
+		// Convertir la valeur en nombre
+			float	rateValue;
+			try {
+				rateValue = std::stof(strRate);
+			} catch (const std::exception& e) {
+				std::cerr << "Error - Invalid value => " << strRate << std::endl;
+				continue;
+			}
+
+		// Check si la valeur est dans la plage valide (0 a 1000)
+		if (rateValue < 1 || rateValue > 1000) {
+			std::cerr << "Error - Value out of range => " << rateValue << std::endl;
+			continue;
+		}
+
+		// Trouver le taux de change associé à la date
+		try {
+			float	exchangeRate = findClosestDate(date);
+			float	result = exchangeRate * rateValue;
+			std::cout << date << " => " << rateValue << " = " << result << std::endl;
+		} catch (const std::exception& e) {
+			std::cerr << "Exception caught - Bad input => " << line << std::endl;
+		}
+	}
+	file.close();
+}

@@ -20,7 +20,11 @@ class BitcoinExchange {
     BitcoinExchange& operator=(const BitcoinExchange& other);
 
     void    loadExchangeRates(const std::string& filePath);
-    void    isValidDate(const std::string& date);
+    void    isValidDate(const std::string& date) const;
+    void    manageInputFile(const std::string& filePath);
+
+    std::string findRateForClosestDate(const std::string& date) const;
+
 
     class   FileException : public std::exception {
         private:
