@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # Nom de l'executable
-NAME = Easyfind
+NAME = RPN
 
 # Compilateur
 CXX := c++ # or g++
@@ -20,7 +20,7 @@ CXX := c++ # or g++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 #Liste des fichiers source.
-SRCS = main.cpp \
+SRCS = main.cpp RPN.cpp\
 
 OBJS = $(SRCS:.cpp=.o)
 

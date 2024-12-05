@@ -5,8 +5,11 @@
 #include <string>
 #include <fstream>
 #include <ostream>
+#include <istream>
 #include <iostream>
+#include <sstream>
 #include <cstdlib>
+#include <string>
 
 class BitcoinExchange {
     private:
@@ -23,7 +26,11 @@ class BitcoinExchange {
     void    isValidDate(const std::string& date) const;
     void    manageInputFile(const std::string& filePath);
 
-    std::string findRateForClosestDate(const std::string& date) const;
+    bool	isNumeric(const std::string str) const;
+    bool	isLeapYear(int year) const;
+    bool	isFloat(const std::string& price) const;
+
+    float     findRateForClosestDate(const std::string& date) const;
 
 
     class   FileException : public std::exception {
