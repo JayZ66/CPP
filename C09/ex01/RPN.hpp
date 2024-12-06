@@ -29,11 +29,12 @@ class RPN {
     RPN& operator=(const RPN& other);
 
     void    checkRpnExpression(const std::string& expression) const;
-    void    calculateExpression(const std::string& expression);
-    void    prepareResult(const std::string& expression);
+    void    calculateExpression(const std::string& op);
+    int   prepareResult(const std::string& expression);
 
     bool    isBeforeTen(const char& digit) const;
-    bool    isAnOperator(const std::string& operatoor) const;
+    // bool    isAnOperator(const std::string& operatoor) const;
+    bool    isAnOperator(const char op) const;
 
     class ExpressionException : public std::exception {
         private:

@@ -2,14 +2,19 @@
 #pragma once
 
 #include <map>
-#include <string>
+#include <algorithm>
 #include <fstream>
 #include <ostream>
 #include <istream>
 #include <iostream>
 #include <sstream>
-#include <cstdlib>
 #include <string>
+#include <sstream>
+#include <limits>
+#include <limits.h>
+#include <time.h>
+#include <ctime>
+#include <cstdlib>
 
 class BitcoinExchange {
     private:

@@ -101,18 +101,43 @@ void	BitcoinExchange::isValidDate(const std::string& date) const {
 	if (date[4] != '-' || date[7] != '-')
 		throw DateException("Date format not good");
 
-	if (!isNumeric(date.substr(0, 4)) || !isNumeric(date.substr(5, 2)) || !isNumeric(date.substr(8, 2)))
-		throw DateException("Date format not good - Non numeric data");
-	int	year = std::strtol(date.substr(0, 4).c_str(), NULL, 10);
-	int	month = std::strtol(date.substr(5, 2).c_str(), NULL, 10);
-	int	day = std::strtol(date.substr(8, 2).c_str(), NULL, 10);
-	
-	if (year < 2009)
-		throw DateException("Wrong year");
-	if (month < 1 || month > 12)
-		throw DateException("Wrong month");
-	if (day < 1 || day > 31)
-		throw	DateException("Wrong day");
+	// if (!isNumeric(date.substr(0, 4)) || !isNumeric(date.substr(5, 2)) || !isNumeric(date.substr(8, 2)))
+	// 	throw DateException("Date format not good - Non numeric data");
+	char*	endPtr;
+	int	year = std::strtol(date.substr(0, 4).c_str(), &endPtr, 10);
+	if (*endPtr == '\0') {  // Vérifie que la conversion a réussi et est complète
+		if (year < INT_MIN || year > INT_MAX)
+			throw DateException("Error: year is out of range");
+		else if (year < 2009)
+			throw DateException("Wrong year");
+	}
+	else
+		throw DateException("Date format not good - Non numeric year");
+	int	month = std::strtol(date.substr(5, 2).c_str(), &endPtr, 10);
+	if (*endPtr == '\0') {  // Vérifie que la conversion a réussi et est complète
+		if (month < INT_MIN || month > INT_MAX)
+			throw DateException("Error: month is out of range");
+		else if (month < 1 || month > 12)
+			throw DateException("Wrong month");
+	}
+	else
+		throw DateException("Date format not good - Non numeric month");
+	int	day = std::strtol(date.substr(8, 2).c_str(), &endPtr, 10);
+	if (*endPtr == '\0') {  // Vérifie que la conversion a réussi et est complète
+		if (day < INT_MIN || day > INT_MAX)
+			throw DateException("Error: digit is out of range");
+		else if (day < 1 || day > 31)
+			throw DateException("Wrong day");
+	}
+	else
+		throw DateException("Date format not good - Non numeric day");
+
+	// if (year < 2009)
+	// 	throw DateException("Wrong year");
+	// if (month < 1 || month > 12)
+	// 	throw DateException("Wrong month");
+	// if (day < 1 || day > 31)
+	// 	throw	DateException("Wrong day");
 
 	int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	if (isLeapYear(year))

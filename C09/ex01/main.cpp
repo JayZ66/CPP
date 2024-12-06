@@ -12,6 +12,9 @@ int main(int ac, char **av) {
 	RPN	polishLine;
 	try {
 		polishLine.checkRpnExpression(expression);
+		int	result;
+		result = polishLine.prepareResult(expression);
+		std::cout << result << std::endl;
 	} catch (const std::exception& e) {
 		std::cerr << "Exception caught: " << e.what() << std::endl;
 		return 1;

@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # Nom de l'executable
-NAME = Easyfind
+NAME = PmergeMe
 
 # Compilateur
 CXX := c++ # or g++
