@@ -21,14 +21,32 @@
 // We must use a variant to the sort algorithm which is called "merge-insert-sort" or Ford-Johnson
 // And then sort elements with two different containers to compare process time.
 class PmergeMe {
-    private:
+	private:
+		std::vector<int>	_vector;
+		std::deque<int>		_deque;
 
-    public:
+	public:
 
-    PmergeMe();
-    PmergeMe(const PmergeMe& other);
-    ~PmergeMe();
+	PmergeMe();
+	PmergeMe(const PmergeMe& other);
+	~PmergeMe();
 
-    PmergeMe& operator=(const PmergeMe& other);
+	PmergeMe& operator=(const PmergeMe& other);
+
+	void	initializeContainers(const std::vector<int>& nbs);
+	void	mergeInsertSort(const std::vector<int>& vectorArray);
+
+	class VectorException : public std::exception {
+		private:
+			std::string	_message;
+
+		public:
+			VectorException(const std::string& message) : _message(message) {}
+			virtual ~VectorException() throw() {}
+			virtual const char* what() const throw() {
+				return _message.c_str();
+			}
+
+	}
 
 };
