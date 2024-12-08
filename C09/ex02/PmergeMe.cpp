@@ -38,18 +38,36 @@ void	PmergeMe::initializeContainers(const std::vector<int>& nbs) {
 	_deque.assign(nbs.begin(), nbs.end());
 }
 
-void	mergeInsertSort(const std::vector<int>& vectorArray) {
+std::vector<int>	mergeInsertSort(const std::vector<int>& vectorArray) {
 
-	if (vectorArray.size() < 2)
+	if (vectorArray.size() < 2) // Si le vecteur est vide ou de taille 1, il est déjà trié.
 		throw VectorException("Error: vectorArray does not contain enough elements");
 	
-	std::vector<int>	firstHalf;
-	std::vector<int>	secondHalf;
-	for (size_t i = 0; i < vectorArray.size(); i++) {
-		if (i % 2 == 0) {
-			firstHalf.push_back(vectorArray.at(i));
-		}
-		else
-			secondHalf.push_back(vectorArray.at(i));
-	}
+	size_t	pivot = vectorArray.size() / 2;
+
+	std::vector<int> firstHalf(vectorArray.begin(), vectorArray.begin() + pivot);
+	/*
+	- Utiliser le constructeur du std::vector avec la plage d’itérateurs.
+	OU
+	- Déclarer d’abord les vecteurs, puis appeler .assign.
+	*/
+	std::vector<int> secondHalf(vectorArray.begin() + pivot, vectorArray.end());
+
+	// Pas besoin de check la size car si une sous-partie est de taille 1 ou vide, elle est déjà triée par définition, et la récursivité le gère naturellement.
+	firstHalf = mergeInsertSort(firstHalf);
+	secondHalf = mergeInsertSort(secondHalf);
+
+	return mergeHalves(firstHalf, secondHalf);
+}
+// No returning a ref. because i'm using local objects only.
+
+/*
+Sending const ref in this function because our goal here is to combine 2 sorted vectors to return only one sorted !
+So our half vectors are just used as data sources.
+Conclusion : 
+	- Passer par valeur : mauvais choix car cela entraînerait une copie inutile à chaque appel.
+	- Passer par ref. constante : idéal car on ne modifie pas les vecteurs et on économise la copie.
+*/
+std::vector<int>	PmergeMe::mergeHalves(const std::vector<int>& firstHalf, const std::vector<int>& secondHalf) {
+
 }

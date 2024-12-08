@@ -34,7 +34,8 @@ class PmergeMe {
 	PmergeMe& operator=(const PmergeMe& other);
 
 	void	initializeContainers(const std::vector<int>& nbs);
-	void	mergeInsertSort(const std::vector<int>& vectorArray);
+	std::vector<int>	mergeInsertSort(const std::vector<int>& vectorArray);
+	std::vector<int>	mergeHalves(const std::vector<int>& firstHalf, const std::vector<int>& secondHalf);
 
 	class VectorException : public std::exception {
 		private:
