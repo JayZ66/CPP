@@ -16,7 +16,7 @@ Steps :
 			- Prendre chaque élément de la seconde sous-séquence triée et insérez-le dans la position appropriée de la 1ère sous-séquence triée.
 */
 
-PmergeMe::PmergeMe() {}
+PmergeMe::PmergeMe() : _dequeChrono(0), _vectorChrono(0) {}
 
 PmergeMe::PmergeMe(const PmergeMe& other) {
 	*this = other;
@@ -41,7 +41,8 @@ void	PmergeMe::initializeContainers(const std::vector<int>& nbs) {
 std::vector<int>	mergeInsertSort(const std::vector<int>& vectorArray) {
 
 	if (vectorArray.size() < 2) // Si le vecteur est vide ou de taille 1, il est déjà trié.
-		throw VectorException("Error: vectorArray does not contain enough elements");
+		return vectorArray;
+		// throw VectorException("Error: vectorArray does not contain enough elements");
 	
 	size_t	pivot = vectorArray.size() / 2;
 
@@ -54,7 +55,7 @@ std::vector<int>	mergeInsertSort(const std::vector<int>& vectorArray) {
 	std::vector<int> secondHalf(vectorArray.begin() + pivot, vectorArray.end());
 
 	// Pas besoin de check la size car si une sous-partie est de taille 1 ou vide, elle est déjà triée par définition, et la récursivité le gère naturellement.
-	firstHalf = mergeInsertSort(firstHalf);
+	firstHalf = mergeInsertSort(firstHalf); // La récursivité va permettre de former des paquets de plus en plus petit.
 	secondHalf = mergeInsertSort(secondHalf);
 
 	return mergeHalves(firstHalf, secondHalf);
@@ -68,6 +69,101 @@ Conclusion :
 	- Passer par valeur : mauvais choix car cela entraînerait une copie inutile à chaque appel.
 	- Passer par ref. constante : idéal car on ne modifie pas les vecteurs et on économise la copie.
 */
+
+// Goal here is to merge our sorted half vectors.
 std::vector<int>	PmergeMe::mergeHalves(const std::vector<int>& firstHalf, const std::vector<int>& secondHalf) {
 
+	std::vector<int>	sortedArray;
+
+	std::vector<int>::iterator	itFirst = firstHalf.begin();
+	std::vector<int>::iterator	itSecond = secondHalf.begin();
+
+	while (itFirst != firstHalf.end() && itSecond != secondHalf.end()) {
+		if (*itFirst < *itSecond) {
+			sortedArray.push_back(*itFirst);
+			++itFirst;
+		}
+		else {
+			sortedArray.push_back(*itSecond);
+			++itSecond;
+		}
+	}
+
+	while (itFirst != firstHalf.end()) {
+		sortedArray.push_back(*itFirst);
+		++itFirst;
+	}
+	while (itSecond != secondHalf.end()) {
+		sortedArray.push_back(*itSecond);
+		++itSecond;
+	}
+
+	return sortedArray;
+}
+
+void	PmergeMe::sortContainers() {
+	if (_vector.size() <= 0 || _deque.size() <= 0)
+		throw VectorException("Error : vector is empty");
+	_vector = mergeInsertSort(_vector);
+	// _deque = mergeInsertSortDeque(_deque);
+}
+
+std::deque<int>		PmergeMe::mergeInsertSortDeque(const std::deque<int>& dequeArray) {
+
+	if (dequeArray.size() < 2)
+		return dequeArray;
+	size_t	pivot = dequeArray.size() / 2;
+	std::deque<int>	firstHalf;
+	std::deque<int>	secondHalf;
+
+	firstHalf.assign(dequeArray.begin(), dequeArray.begin() + pivot);
+	secondHalf.assign(dequeArray.begin() + pivot, dequeArray.end());
+
+	firstHalf = mergeInsertSortDeque(firstHalf);
+	secondHalf = mergeInsertSortDeque(secondHalf);
+
+	return mergeSortedDeque(firstHalf, secondHalf);
+}
+
+std::deque<int>	PmergeMe::mergeSortedDeque(const std::deque<int>& firstHalf, const std::deque<int>& secondHalf) {
+
+	std::deque<int>	sortedDeque;
+
+	std::deque<int>::iterator	itFirst = firstHalf.begin();
+	std::deque<int>::iterator	itSecond= secondHalf.begin();
+
+	while (itFirst != firstHalf.end() && itSecond != secondHalf.end()) {
+		if (*itFirst < *itSecond) {
+			sortedDeque.push_back(*itFirst);
+			++itFirst;
+		}
+		else {
+			sortedDeque.push_back(*itSecond);
+			++itSecond;
+		}
+	}
+
+	for (; itFirst < firstHalf.end(); ++itFirst) {
+		sortedDeque.push_back(*itFirst);
+	}
+	for (; itSecond < secondHalf.end(); ++itSecond) {
+		sortedDeque.push_back(*itSecond);
+	}
+
+	return sortedDeque;
+}
+
+void	PmergeMe::chronoSort(void (PmergeMe::*sortMethod)(T&), T& container) {
+
+	T	containerCopy = container;
+
+	clock_t	start = clock();
+
+	(this->*sortMethod)(containerCopy); // Check for the ref or not to send (sending the ref of a copy is not logical)
+
+	clock_t	end = clock();
+
+	double	finalTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1e6; // Cacluler en microsecondes
+
+	std::cout << "Time taken sorting container: " << finalTime << " microseconds." << std::endl;
 }

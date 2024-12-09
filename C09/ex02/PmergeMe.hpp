@@ -25,6 +25,9 @@ class PmergeMe {
 		std::vector<int>	_vector;
 		std::deque<int>		_deque;
 
+		double				_vectorChrono;
+		double				_dequeChrono;
+
 	public:
 
 	PmergeMe();
@@ -36,6 +39,11 @@ class PmergeMe {
 	void	initializeContainers(const std::vector<int>& nbs);
 	std::vector<int>	mergeInsertSort(const std::vector<int>& vectorArray);
 	std::vector<int>	mergeHalves(const std::vector<int>& firstHalf, const std::vector<int>& secondHalf);
+	std::deque<int>		mergeInsertSortDeque(const std::deque<int>& dequeArray);
+	void				sortContainers();
+
+	template <typename T>
+	void	chronoSort(void (PmergeMe::*sortMethod)(T&), T& container);
 
 	class VectorException : public std::exception {
 		private:
@@ -48,6 +56,19 @@ class PmergeMe {
 				return _message.c_str();
 			}
 
-	}
+	};
+
+	class DequeException : public std::exception {
+		private:
+			std::string	_message;
+
+		public:
+			DequeException(const std::string& message) : _message(message) {}
+			virtual ~DequeException() throw() {}
+			virtual const char* what() const throw() {
+				return _message.c_str();
+			}
+
+	};
 
 };

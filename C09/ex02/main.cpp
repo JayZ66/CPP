@@ -9,9 +9,13 @@ int	main(int ac, char **av) {
 	}
 	std::vector<int>	vectorContainer;
 	for (size_t i = 0; av[i]; i++) {
-		if (!std::is_digit(av[i])) {
-			std::cerr << "Error: this is not an integer element => " << av[i] << std::endl;
-			return 1;
+		size_t j = 0;
+		while (av[i][j]) {
+			if (!isdigit(av[i][j])) {
+				std::cerr << "Error: this is not an integer element => " << av[i] << std::endl;
+				return 1;
+			}
+			j++;
 		}
 		char*	endPtr;
 		long	convert = std::strtol(av[i], &endPtr, 10);
@@ -23,6 +27,10 @@ int	main(int ac, char **av) {
 			vectorContainer.push_back(convert);
 		}
 	}
+
+	PmergeMe	sorter;
+	sorter.initializeContainers(vectorContainer);
+	sorter.chronoSort(&PmergeMe::sortContainers, sorter._vector);
 
 	return 0;
 }
