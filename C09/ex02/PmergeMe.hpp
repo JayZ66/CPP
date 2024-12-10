@@ -14,7 +14,8 @@
 #include <time.h>
 #include <ctime>
 #include <cstdlib>
-#include <chrono>
+#include <climits>
+#include <sys/time.h>
 
 
 // Goal : to sort a sequence of positive int. that has been given in args.
@@ -40,10 +41,25 @@ class PmergeMe {
 	std::vector<int>	mergeInsertSort(const std::vector<int>& vectorArray);
 	std::vector<int>	mergeHalves(const std::vector<int>& firstHalf, const std::vector<int>& secondHalf);
 	std::deque<int>		mergeInsertSortDeque(const std::deque<int>& dequeArray);
+	std::deque<int>		mergeSortedDeque(const std::deque<int>& firstHalf, const std::deque<int>& secondHalf);
 	void				sortContainers();
 
-	template <typename T>
-	void	chronoSort(void (PmergeMe::*sortMethod)(T&), T& container);
+	template <typename Container>
+	void	timeSorting(Container& container, const std::string& containerName) {
+		Container	containerCopy = container;
+
+		clock_t start = clock();
+		if constexpr (std::is_same<Container, std::vector<int> >::value) {
+			containerCopy = mergeInsertSort(containerCopy);
+		}
+		else {
+			containerCopy = mergeInsertSortDeque(containerCopy);
+		}
+		clock_t	end = clock();
+
+		double	finalTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1e6; // En microseconds
+		std::cout << "Time taken to sort " << containerName << ": " << finalTime << " microseconds." << std::endl;
+	}
 
 	class VectorException : public std::exception {
 		private:
