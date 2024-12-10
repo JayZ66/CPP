@@ -143,12 +143,18 @@ std::deque<int>	PmergeMe::mergeSortedDeque(const std::deque<int>& firstHalf, con
 		}
 	}
 
-	for (; itFirst < firstHalf.end(); ++itFirst) {
+	while (itFirst != firstHalf.end()) {
 		sortedDeque.push_back(*itFirst);
+		++itFirst;
 	}
-	for (; itSecond < secondHalf.end(); ++itSecond) {
+	while (itSecond != secondHalf.end()) {
 		sortedDeque.push_back(*itSecond);
+		++itSecond;
 	}
+	
+	// for (; itSecond < secondHalf.end(); ++itSecond) { // Pas le droit ??
+	// 	sortedDeque.push_back(*itSecond);
+	// }
 
 	return sortedDeque;
 }
