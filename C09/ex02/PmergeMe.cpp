@@ -39,6 +39,12 @@ void	PmergeMe::initializeContainers(const std::vector<int>& nbs) {
 	_vector.assign(nbs.begin(), nbs.end());
 
 	_deque.assign(nbs.begin(), nbs.end());
+	
+	std::cout << "Before: ";
+	for (size_t i = 0; i < _vector.size(); i++) {
+		std::cout << _vector.at(i) << " ";
+	}
+	std::cout << std::endl;
 }
 
 /*
@@ -54,8 +60,8 @@ std::vector<int>	PmergeMe::mergeHalves(const std::vector<int>& firstHalf, const 
 
 	std::vector<int>	sortedArray;
 
-	std::vector<int>::iterator	itFirst = firstHalf.begin();
-	std::vector<int>::iterator	itSecond = secondHalf.begin();
+	std::vector<int>::const_iterator	itFirst = firstHalf.begin(); // Const ref so iterator must be const
+	std::vector<int>::const_iterator	itSecond = secondHalf.begin();
 
 	while (itFirst != firstHalf.end() && itSecond != secondHalf.end()) {
 		if (*itFirst < *itSecond) {
@@ -80,7 +86,7 @@ std::vector<int>	PmergeMe::mergeHalves(const std::vector<int>& firstHalf, const 
 	return sortedArray;
 }
 
-std::vector<int>	mergeInsertSort(const std::vector<int>& vectorArray) {
+std::vector<int>	PmergeMe::mergeInsertSort(const std::vector<int>& vectorArray) {
 
 	if (vectorArray.size() < 2) // Si le vecteur est vide ou de taille 1, il est déjà trié.
 		return vectorArray;
@@ -107,10 +113,10 @@ std::vector<int>	mergeInsertSort(const std::vector<int>& vectorArray) {
 void	PmergeMe::sortContainers() {
 	if (_vector.size() <= 0 || _deque.size() <= 0)
 		throw VectorException("Error : vector is empty");
-	PmergeMe::timeSorting(std::vector<int>_vector, "vector");
-	PmergeMe::timeSorting(_deque, "deque");
-	// _vector = mergeInsertSort(_vector);
-	// _deque = mergeInsertSortDeque(_deque);
+
+	timeSorting(_vector, "vector");
+	timeSorting(_deque, "deque");
+
 }
 
 std::deque<int>		PmergeMe::mergeInsertSortDeque(const std::deque<int>& dequeArray) {
@@ -134,8 +140,8 @@ std::deque<int>	PmergeMe::mergeSortedDeque(const std::deque<int>& firstHalf, con
 
 	std::deque<int>	sortedDeque;
 
-	std::deque<int>::iterator	itFirst = firstHalf.begin();
-	std::deque<int>::iterator	itSecond= secondHalf.begin();
+	std::deque<int>::const_iterator	itFirst = firstHalf.begin();
+	std::deque<int>::const_iterator	itSecond= secondHalf.begin();
 
 	while (itFirst != firstHalf.end() && itSecond != secondHalf.end()) {
 		if (*itFirst < *itSecond) {
@@ -162,6 +168,19 @@ std::deque<int>	PmergeMe::mergeSortedDeque(const std::deque<int>& firstHalf, con
 	// }
 
 	return sortedDeque;
+}
+
+void	PmergeMe::printResult(const std::string containerName, const double finalTime) const {
+	
+	if (containerName == "vector") {
+		std::cout << "After: ";
+		for (size_t i = 0; i < _vector.size(); i++) {
+			std::cout << _vector.at(i) << " ";
+		}
+		std::cout << std::endl;
+	}
+
+	std::cout << "Time to process a range of " << _vector.size() << " elements with " << containerName << ": " << finalTime << " microseconds." << std::endl;
 }
 
 

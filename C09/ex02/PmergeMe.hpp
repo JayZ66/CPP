@@ -16,6 +16,7 @@
 #include <cstdlib>
 #include <climits>
 #include <sys/time.h>
+#include <typeinfo>
 
 
 // Goal : to sort a sequence of positive int. that has been given in args.
@@ -43,23 +44,45 @@ class PmergeMe {
 	std::deque<int>		mergeInsertSortDeque(const std::deque<int>& dequeArray);
 	std::deque<int>		mergeSortedDeque(const std::deque<int>& firstHalf, const std::deque<int>& secondHalf);
 	void				sortContainers();
+	void				printResult(const std::string containerName, const double finalTime) const;
 
 	template <typename Container>
-	void	timeSorting(Container& container, const std::string& containerName) {
-		Container	containerCopy = container;
+	void timeSorting(Container& container, const std::string& containerName) {
+		Container containerCopy = container;
 
 		clock_t start = clock();
-		if constexpr (std::is_same<Container, std::vector<int> >::value) {
-			containerCopy = mergeInsertSort(containerCopy);
+		if (typeid(container) == typeid(std::vector<int>)) {
+			std::vector<int> vectorCopy(containerCopy.begin(), containerCopy.end());
+			vectorCopy = mergeInsertSort(vectorCopy);
+			_vector = vectorCopy;
+		} else if (typeid(container) == typeid(std::deque<int>)) {
+			std::deque<int> dequeCopy(containerCopy.begin(), containerCopy.end());
+			dequeCopy = mergeInsertSortDeque(dequeCopy);
+			_deque = dequeCopy;
+		} else {
+			throw std::runtime_error("Unsupported container type");
 		}
-		else {
-			containerCopy = mergeInsertSortDeque(containerCopy);
-		}
-		clock_t	end = clock();
+		clock_t end = clock();
 
-		double	finalTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1e6; // En microseconds
-		std::cout << "Time taken to sort " << containerName << ": " << finalTime << " microseconds." << std::endl;
+		double finalTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1e6; // En microseconds
+		printResult(containerName, finalTime);
 	}
+
+	// void	timeSorting(Container& container, const std::string& containerName) {
+	// 	Container&	containerCopy = container;
+
+	// 	clock_t start = clock();
+	// 	if (typeid(container) == typeid(std::vector<int>)) {
+	// 		containerCopy = mergeInsertSort(containerCopy);
+	// 	}
+	// 	else {
+	// 		containerCopy = mergeInsertSortDeque(containerCopy);
+	// 	}
+	// 	clock_t	end = clock();
+
+	// 	double	finalTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1e6; // En microseconds
+	// 	std::cout << "Time taken to sort " << containerName << ": " << finalTime << " microseconds." << std::endl;
+	// }
 
 	class VectorException : public std::exception {
 		private:
